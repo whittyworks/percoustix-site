@@ -20,10 +20,9 @@ html, body{
 
 body{
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  color: var(--white);
+  color: #fff;
 
-  /* SINGLE SOURCE OF TRUTH BACKGROUND */
-  background: #000 url("assets/img/poster-bg-optimized.jpg")
+  background: #000 url("https://whitty-percoustix.github.io/percoustix-site/assets/img/poster-bg-optimized.jpg")
               no-repeat center top / cover;
 }
 
