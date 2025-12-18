@@ -118,19 +118,60 @@ main > *{
   background: url("assets/img/hero-home.jpg") no-repeat center top / cover;
 }
 
-/* Big loud headline (HTML, not baked into image) */
-.hero-title{
+/* HERO needs positioning context */
+.hero{
+  position: relative;
+  min-height: 130vh; /* keep your “full scene” height */
+  background: url("assets/img/hero-home.jpg") no-repeat center top / cover;
+  overflow: hidden;
+}
+
+/* THE BIG POSTER HEADLINE */
+.space-title{
   position: absolute;
-  left: 6vw;
-  top: 14vh;
+  right: 4.5vw;
+  top: 12vh;
   margin: 0;
 
   font-family: "Bebas Neue", Inter, sans-serif;
-  font-size: clamp(48px, 7vw, 96px);
+  font-weight: 400;
+  font-size: clamp(44px, 6.2vw, 96px);
   letter-spacing: 1px;
-
+  text-transform: uppercase;
   color: #fff;
-  text-shadow: 0 6px 24px rgba(0,0,0,.9);
+  white-space: nowrap;
+
+  /* Perspective + tilt like the sample */
+  transform-origin: right center;
+  transform: perspective(1000px) rotateY(-18deg) rotateZ(-10deg);
+
+  /* Punchy poster shadows */
+  text-shadow:
+    0 3px 0 rgba(0,0,0,.55),
+    0 6px 0 rgba(0,0,0,.50),
+    0 9px 0 rgba(0,0,0,.45),
+    0 12px 12px rgba(0,0,0,.70);
+
+  /* crisp */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Faux 3D “depth/extrusion” */
+.space-title::after{
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  /* offset creates thickness */
+  transform: translate(10px, 8px);
+
+  /* dark back-face */
+  color: rgba(0,0,0,.70);
+
+  /* slight blur so it feels like depth */
+  filter: blur(.4px);
+  opacity: .95;
 }
 
 /* ===============================
