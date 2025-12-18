@@ -256,3 +256,8 @@ body{
 
 /* Kill the old hero background layer */
 .hero-bg{ display: none !important; }
+/* === STOP SECTIONS FROM COVERING THE POSTER === */
+.hero, .why, .section, .footer, main {
+  background: transparent !important;
+  background-color: transparent !important;
+}
