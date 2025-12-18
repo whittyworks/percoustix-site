@@ -31,15 +31,13 @@ body{
    =============================== */
 .site-header{
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 20;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,.55),
-    rgba(0,0,0,0)
-  );
+  top:0;
+  left:0;
+  right:0;
+  z-index: 1000;
+
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(6px);
 }
 
 .header-inner{
@@ -121,20 +119,27 @@ main > *{
 /* ===============================
    HERO
    =============================== */
+/* HERO: full hero image (Canva export) */
 .hero{
+  position: relative;
   min-height: 100vh;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
+  overflow: hidden;
+
+  background: #000 url("assets/img/hero-home.jpg") no-repeat center top / cover;
 }
 
+/* Big loud headline (HTML, not baked into image) */
 .hero-title{
+  position: absolute;
+  left: 6vw;
+  top: 14vh;
   margin: 0;
-  padding: 140px 6vw 0 0;
-  text-align: right;
+
   font-family: "Bebas Neue", Inter, sans-serif;
   font-size: clamp(48px, 7vw, 96px);
   letter-spacing: 1px;
+
+  color: #fff;
   text-shadow: 0 6px 24px rgba(0,0,0,.9);
 }
 
