@@ -261,7 +261,7 @@ main > *{
   background-size: cover;
 
   /* THIS IS THE KEY */
-background-position: center 85%;
+background-position: center 75%;
 }
 .hero{
   padding-bottom: 6vh;
