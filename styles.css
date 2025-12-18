@@ -202,7 +202,7 @@ body{
   color: #fff;
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 
-  background-image: url("assets/img/hero-bg.png"); /* TEMP stand-in */
+  background-image: url("assets/img/poster-bg.jpg");
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
