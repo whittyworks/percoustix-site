@@ -229,5 +229,5 @@ main::before{
 }
 /* FORCE POSTER BACKGROUND (last rule wins) */
 body{
-  background-image: url("assets/img/poster-bg.jpg") !important;
+background-image: url("assets/img/poster-bg-optimized.jpg");
 }
