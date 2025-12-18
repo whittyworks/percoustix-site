@@ -236,5 +236,14 @@ main > *{
 .why-bg{
   display: none;
 }
-/* TEMP DEBUG: should turn the whole page neon if nothing is covering it */
-body { background: hotpink !important; }
+/* FINAL: single poster background */
+body{
+  background-color: #000;
+  background-image: url("assets/img/poster-bg-optimized.jpg");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+}
+.hero-bg, .why-bg{ display:none; }
+.hero, .why, .section, .footer{ background: transparent; }
