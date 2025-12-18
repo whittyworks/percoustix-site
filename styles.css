@@ -267,3 +267,12 @@ background-position: center 85%;
   padding-bottom: 6vh;
   box-sizing: border-box;
 }
+/* ==== SCROLL SAFETY NET ==== */
+html, body{
+  height: auto !important;
+  overflow-y: auto !important;
+}
+
+body{
+  overflow-x: hidden;
+}
