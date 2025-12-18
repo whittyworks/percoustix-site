@@ -189,26 +189,24 @@ body{
   }
 }
 /* ===============================
-   TEMP FULL-PAGE POSTER BACKGROUND
+   FULL-PAGE POSTER BACKGROUND
    =============================== */
-html, body {
-  height: 100%;
-}
+html, body { height: 100%; }
 
 body{
   margin: 0;
   color: #fff;
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 
-  background-image: url("assets/img/poster-bg.jpg");
+  background-color: #000; /* fallback while image loads */
+  background-image: url("assets/img/poster-bg-optimized.jpg");
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-attachment: scroll; /* safer on mobile */
 }
-.section{
-  background: transparent;
-}
+
+/* Optional: slight darkening for readability (dial these numbers as needed) */
 main{
   position: relative;
 }
@@ -218,44 +216,23 @@ main::before{
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,.15),
-    rgba(0,0,0,.55)
-  );
-  z-index: -1;
+  background: linear-gradient(to bottom, rgba(0,0,0,.10), rgba(0,0,0,.45));
+  z-index: 0;
 }
-/* FORCE POSTER BACKGROUND (last rule wins) */
-body{
-background-image: url("assets/img/poster-bg-optimized.jpg");
+
+/* Ensure content sits above the overlay */
+main > *{
+  position: relative;
+  z-index: 1;
 }
-/* Disable hero background image so hero uses poster background */
-.hero-bg{
+
+/* Poster look: keep sections transparent */
+.hero, .why, .section, .footer{
+  background: transparent;
+}
+
+/* Disable section-specific background layers (we're using ONE poster) */
+.hero-bg,
+.why-bg{
   display: none;
-}
-/* === FINAL AUTHORITY: POSTER BACKGROUND === */
-html, body { height: 100%; }
-
-body{
-  background-color: #000 !important; /* fallback */
-  background-image: url("assets/img/poster-bg-optimized.jpg") !important;
-  background-size: cover !important;
-  background-position: center top !important;
-  background-repeat: no-repeat !important;
-  background-attachment: scroll !important; /* use fixed later if you want */
-}
-
-/* Nothing should paint over the poster */
-.section,
-.hero,
-.why{
-  background: transparent !important;
-}
-
-/* Kill the old hero background layer */
-.hero-bg{ display: none !important; }
-/* === STOP SECTIONS FROM COVERING THE POSTER === */
-.hero, .why, .section, .footer, main {
-  background: transparent !important;
-  background-color: transparent !important;
 }
