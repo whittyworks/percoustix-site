@@ -107,15 +107,37 @@ main{
   /* keep headline clear of fixed header */
   padding-top: 110px;
 }
+/* Brighten the hero slightly */
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  /* subtle lift: brighten + a touch of contrast control */
+  background: radial-gradient(circle at 55% 40%,
+    rgba(255,255,255,.10),
+    rgba(255,255,255,0) 55%
+  );
+  z-index: 0;
+}
 
 /* Optional: blend space -> water */
+/* Smooth blend from hero into underwater background */
 .hero::after{
   content:"";
   position:absolute;
   left:0; right:0; bottom:0;
-  height: 220px;
+  height: 280px; /* increase for softer transition */
   pointer-events:none;
-  background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.85));
+
+  /* fades into transparent so the underwater body bg shows through */
+  background: linear-gradient(
+    to bottom,
+    rgba(2,11,16,0) 0%,
+    rgba(2,11,16,.55) 55%,
+    rgba(2,11,16,1) 100%
+  );
+  z-index: 1;
 }
 
 /* 3D-ish headline */
@@ -154,6 +176,7 @@ main{
   filter: blur(.4px);
   opacity: .95;
 }
+.space-title{ z-index: 2; }
 
 /* BELOW HERO: transparent surfaces so the body water shows through */
 .why,
@@ -230,4 +253,17 @@ main{
     white-space: normal;
     max-width: 88vw;
   }
+}
+/* Soft underwater haze across the page (below hero) */
+main::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 120%,
+    rgba(120,220,255,.10),
+    rgba(0,0,0,0) 55%
+  );
+  opacity: .6;
+  z-index: -1;
 }
