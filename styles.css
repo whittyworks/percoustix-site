@@ -1,33 +1,25 @@
-/* ===============================
-   GLOBAL VARIABLES
-   =============================== */
 :root{
   --cyan: #2fd3ff;
   --white: #ffffff;
   --shadow: 0 12px 40px rgba(0,0,0,.55);
 }
 
-/* ===============================
-   RESET / BASE
-   =============================== */
 *{ box-sizing: border-box; }
+html, body{ margin:0; padding:0; }
 
-html, body{
-  margin: 0;
-  padding: 0;
-  height: 100%;
+body{
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--white);
+  background: #000;
+  overflow-x: hidden;     /* prevent side scroll */
+  overflow-y: auto;       /* allow scrolling */
 }
 
-/* ===============================
-   HEADER
-   =============================== */
+/* Header overlay */
 .site-header{
   position: fixed;
-  top:0;
-  left:0;
-  right:0;
+  top:0; left:0; right:0;
   z-index: 1000;
-
   background: rgba(0,0,0,.45);
   backdrop-filter: blur(6px);
 }
@@ -47,14 +39,15 @@ html, body{
   display:grid;
   place-items:center;
   text-decoration:none;
-  background: rgba(0,0,0,.35);
   box-shadow: var(--shadow);
+  background: rgba(0,0,0,.35);
 }
 
 .logo-mark{
   font-family: Orbitron, Inter, sans-serif;
   font-weight: 700;
   font-size: 22px;
+  color: #fff;
   letter-spacing: 1px;
 }
 
@@ -79,117 +72,88 @@ html, body{
 
 .nav-toggle{
   display:none;
+  background: rgba(0,0,0,.4);
+  color:#fff;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 12px;
+  padding: 10px 12px;
 }
 
-/* ===============================
-   MAIN LAYOUT
-   =============================== */
+/* Main must be normal flow for scrolling */
 main{
   position: relative;
-  z-index: 1;
+  height: auto;
 }
 
-/* gentle global readability layer */
-main::before{
-  content:"";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,.05),
-    rgba(0,0,0,.35)
-  );
-  z-index: 0;
-}
-
-main > *{
-  position: relative;
-  z-index: 1;
-}
-
-/* ===============================
-   HERO
-   =============================== */
-/* HERO: full hero image (Canva export) */
+/* HERO (crop top, protect bottom) */
 .hero{
   position: relative;
-  min-height: 100vh; /* 👈 this is the magic */
-  background: url("assets/img/hero-home.jpg") no-repeat center top / cover;
-}
-
-/* HERO needs positioning context */
-.hero{
-  position: relative;
-  min-height: 100vh; /* keep your “full scene” height */
-  background: url("assets/img/hero-home.jpg") no-repeat center top / cover;
+  height: 100vh;
   overflow: hidden;
+
+  background-image: url("assets/img/hero-home.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center 85%; /* tweak 75-90% to taste */
+
+  /* keep headline clear of fixed header */
+  padding-top: 110px;
 }
 
-/* THE BIG POSTER HEADLINE */
+/* 3D-ish headline */
 .space-title{
   position: absolute;
   right: 4.5vw;
-  top: 20vh;
+  top: 18vh;
   margin: 0;
 
   font-family: "Bebas Neue", Inter, sans-serif;
-  font-weight: 400;
   font-size: clamp(44px, 6.2vw, 96px);
   letter-spacing: 1px;
   text-transform: uppercase;
   color: #fff;
   white-space: nowrap;
 
-  /* Perspective + tilt like the sample */
   transform-origin: right top;
-  transform:
-    perspective(1000px)
-    rotateX(12deg)
-    rotateY(-18deg)
-    rotateZ(8deg);
+  transform: perspective(1000px) rotateX(12deg) rotateY(-18deg) rotateZ(8deg);
 
-  /* Punchy poster shadows */
   text-shadow:
     0 3px 0 rgba(0,0,0,.55),
     0 6px 0 rgba(0,0,0,.50),
     0 9px 0 rgba(0,0,0,.45),
     0 12px 12px rgba(0,0,0,.70);
 
-  /* crisp */
   -webkit-font-smoothing: antialiased;
 }
 
-/* Faux 3D “depth/extrusion” */
 .space-title::after{
   content: attr(data-text);
   position: absolute;
   inset: 0;
   z-index: -1;
-
-  /* offset creates thickness */
   transform: translate(10px, 8px);
-
-  /* dark back-face */
   color: rgba(0,0,0,.70);
-
-  /* slight blur so it feels like depth */
   filter: blur(.4px);
   opacity: .95;
 }
 
-/* ===============================
-   WHY SECTION
-   =============================== */
+/* SECTION spacing: “WHY” should not kiss the hero */
 .why{
-  min-height: 110vh;
-  padding: 8vh 6vw;
+  padding: 10vh 0 6vh;
+  background: #070a0f;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+
+.why-overlay{
+  width: min(1100px, calc(100% - 44px));
+  margin: 0 auto;
+  padding: 0;
 }
 
 .why-title{
-  margin: 0 0 26px;
+  margin: 0 0 22px;
   font-family: "Bebas Neue", Inter, sans-serif;
-  font-size: clamp(56px, 7vw, 120px);
+  font-size: clamp(48px, 6vw, 100px);
   letter-spacing: 6px;
   text-shadow: 0 10px 30px rgba(0,0,0,.85);
 }
@@ -199,24 +163,21 @@ main > *{
   gap: 14px;
   max-width: 820px;
 }
-.why{
-  padding-top: 10vh;   /* creates breathing room */
-  margin-top: 8vh;     /* pushes it down from the hero */
-}
+
 .card{
-  background: rgba(0,0,0,.35);
-  border: 1px solid rgba(255,255,255,.22);
+  background: rgba(0,0,0,.55);
+  border: 1px solid rgba(255,255,255,.18);
   border-radius: 18px;
   padding: 16px 18px;
   box-shadow: var(--shadow);
   backdrop-filter: blur(6px);
 }
 
-/* ===============================
-   GENERIC SECTIONS
-   =============================== */
+/* Generic sections */
 .section{
   padding: 70px 0;
+  background: #070a0f;
+  border-top: 1px solid rgba(255,255,255,.08);
 }
 
 .container{
@@ -230,49 +191,21 @@ main > *{
   margin: 0 0 12px;
 }
 
-/* ===============================
-   FOOTER
-   =============================== */
 .footer{
   padding: 26px 0;
+  background:#05070b;
   border-top: 1px solid rgba(255,255,255,.08);
 }
 
-/* ===============================
-   RESPONSIVE
-   =============================== */
+/* Responsive */
 @media (max-width: 980px){
   .nav{ display:none; }
   .nav-toggle{ display:inline-flex; }
-  .hero-title{
-    padding-right: 4vw;
+
+  .space-title{
+    right: 4vw;
+    top: 20vh;
+    white-space: normal;
+    max-width: 88vw;
   }
-}
-.hero{
-  background-position: center 20%;
-}
-.hero{
-  position: relative;
-  height: 100vh;
-  overflow: hidden;
-
-  background-image: url("assets/img/hero-home.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  /* THIS IS THE KEY */
-background-position: center 70%;
-}
-.hero{
-  padding-bottom: 6vh;
-  box-sizing: border-box;
-}
-/* ==== SCROLL SAFETY NET ==== */
-html, body{
-  height: auto !important;
-  overflow-y: auto !important;
-}
-
-body{
-  overflow-x: hidden;
 }
