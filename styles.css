@@ -229,7 +229,7 @@ main::before{
 }
 /* FORCE POSTER BACKGROUND (last rule wins) */
 body{
-background-image: url("assets/img/poster-bg-optimized.png");
+background-image: url("assets/img/poster-bg-optimized.jpg");
 }
 /* Disable hero background image so hero uses poster background */
 .hero-bg{
