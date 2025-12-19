@@ -419,7 +419,42 @@ main{
     0 0 0 2px rgba(47,211,255,.7) inset,
     0 0 24px rgba(47,211,255,.28);
 }
+/* --- FIX: pad cards flip reliably --- */
+.pad-card{
+  position: relative;
+  width: min(360px, 100%);
+  height: 230px;               /* adjust as you like */
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  perspective: 1200px;
+}
 
+.pad-face{
+  position: absolute;
+  inset: 0;
+  display: flex;               /* IMPORTANT */
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  padding: 22px;
+  border-radius: 28px;         /* your pad shape vibe */
+  backface-visibility: hidden; /* IMPORTANT */
+  transform-style: preserve-3d;
+  transition: transform 520ms ease;
+}
+
+/* default sides */
+.pad-front{ transform: rotateY(0deg); }
+.pad-back { transform: rotateY(180deg); }
+
+/* flipped state */
+.pad-card.is-flipped .pad-front{ transform: rotateY(-180deg); }
+.pad-card.is-flipped .pad-back { transform: rotateY(0deg); }
+
+/* if something is overlaying, force it above */
+.pad-grid{ position: relative; z-index: 2; }
 /* Faces */
 .pad-face{
   position: absolute;
