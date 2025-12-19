@@ -577,3 +577,19 @@ main{
     grid-template-columns: 1fr;
   }
 }
+/* Big, centered section titles (WHY + HOW) */
+.section-title-big{
+  text-align: center;
+  margin: 0 0 26px;
+  font-family: "Bebas Neue", Inter, sans-serif;
+  font-size: clamp(56px, 7vw, 120px);
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  text-shadow: 0 10px 30px rgba(0,0,0,.85);
+}
+
+/* Optional: give sections a little breathing room above the title */
+.why,
+.how-it-works{
+  padding-top: 12vh;
+}
