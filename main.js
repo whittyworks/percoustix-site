@@ -1,27 +1,38 @@
-document.getElementById("year").textContent = new Date().getFullYear();
+// Footer year
+const yearEl = document.getElementById("year");
+if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-const toggle = document.querySelector(".nav-toggle");
-const nav = document.querySelector(".nav");
+// Mobile navigation toggle (dropdown)
+const btn = document.querySelector(".nav-toggle");
+const menu = document.querySelector("#mobile-nav");
 
-if (toggle && nav) {
-  toggle.addEventListener("click", () => {
-    const isOpen = toggle.getAttribute("aria-expanded") === "true";
-    toggle.setAttribute("aria-expanded", String(!isOpen));
+if (btn && menu) {
+  btn.addEventListener("click", () => {
+    const open = menu.classList.toggle("is-open");
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+  });
 
-    // Simple toggle: show/hide nav on mobile
-    if (window.matchMedia("(max-width: 900px)").matches) {
-      nav.style.display = isOpen ? "none" : "flex";
-      nav.style.flexDirection = "column";
-      nav.style.alignItems = "flex-start";
-      nav.style.gap = "12px";
-      nav.style.padding = "12px";
-      nav.style.background = "rgba(11,15,20,.95)";
-      nav.style.border = "1px solid rgba(255,255,255,.10)";
-      nav.style.borderRadius = "16px";
-      nav.style.position = "absolute";
-      nav.style.right = "20px";
-      nav.style.top = "64px";
-      nav.style.width = "min(260px, calc(100vw - 40px))";
+  // Close menu when a link is clicked
+  menu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      menu.classList.remove("is-open");
+      btn.setAttribute("aria-expanded", "false");
+    });
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!menu.contains(e.target) && !btn.contains(e.target)) {
+      menu.classList.remove("is-open");
+      btn.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  // Close menu on resize back to desktop
+  window.addEventListener("resize", () => {
+    if (window.matchMedia("(min-width: 981px)").matches) {
+      menu.classList.remove("is-open");
+      btn.setAttribute("aria-expanded", "false");
     }
   });
 }
