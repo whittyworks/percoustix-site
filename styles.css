@@ -694,3 +694,51 @@ main{
   letter-spacing: .4px;
   opacity: .85;
 }
+.join-band{
+  padding: 12vh 0 14vh;
+}
+
+.join-meta{
+  opacity: .75;
+  margin-bottom: 28px;
+}
+
+.join-form{
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.join-form input{
+  width: min(320px, 80vw);
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(47,211,255,.35);
+  background: rgba(0,0,0,.45);
+  color: #fff;
+  font-size: 15px;
+}
+
+.join-form input::placeholder{
+  color: rgba(255,255,255,.55);
+}
+
+.join-form button{
+  padding: 14px 22px;
+  border-radius: 14px;
+  border: 1px solid rgba(47,211,255,.8);
+  background: rgba(47,211,255,.15);
+  color: #fff;
+  font-family: Orbitron, Inter, sans-serif;
+  letter-spacing: .6px;
+  cursor: pointer;
+
+  box-shadow: 0 12px 30px rgba(0,0,0,.45);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.join-form button:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 18px 45px rgba(0,0,0,.65);
+}
