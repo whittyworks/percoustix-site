@@ -36,3 +36,20 @@ if (btn && menu) {
     }
   });
 }
+// Pad-card click-to-reveal (Why Percoustix)
+document.querySelectorAll(".pad-card").forEach((btn) => {
+  const toggleFlip = () => {
+    const flipped = btn.classList.toggle("is-flipped");
+    btn.setAttribute("aria-pressed", flipped ? "true" : "false");
+  };
+
+  btn.addEventListener("click", toggleFlip);
+
+  // Keyboard support: Enter / Space
+  btn.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      toggleFlip();
+    }
+  });
+});
