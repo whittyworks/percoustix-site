@@ -148,49 +148,6 @@ main{
   z-index: 1;
 }
 
-/* 3D-ish headline (CENTERED) */
-.space-title{
-  position: absolute;
-  left: 50%;
-  top: 18vh;
-  margin: 0;
-
-  font-family: "Bebas Neue", Inter, sans-serif;
-  font-size: clamp(44px, 6.2vw, 96px);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: #fff;
-  white-space: nowrap;
-
-  /* center first, then do the 3D tilt */
-  transform-origin: center top;
-  transform:
-    translateX(-50%)
-    perspective(1000px)
-    rotateX(12deg)
-    rotateY(-18deg)
-    rotateZ(8deg);
-
-  text-shadow:
-    0 3px 0 rgba(0,0,0,.55),
-    0 6px 0 rgba(0,0,0,.50),
-    0 9px 0 rgba(0,0,0,.45),
-    0 12px 12px rgba(0,0,0,.70);
-
-  -webkit-font-smoothing: antialiased;
-  z-index: 2;
-}
-
-.space-title::after{
-  content: attr(data-text);
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  transform: translate(10px, 8px);
-  color: rgba(0,0,0,.70);
-  filter: blur(.4px);
-  opacity: .95;
-}
 
 /* BELOW HERO: let the body’s underwater background show through */
 .why, .section, .footer{
@@ -253,12 +210,10 @@ main{
   padding: 26px 0;
   border-top: 1px solid rgba(255,255,255,.08);
 }
-
-/* Responsive */
-/* 3D-ish headline (CENTERED) */
+/* 3D-ish headline (biased center to the right) */
 .space-title{
   position: absolute;
-  left: 50%;
+  left: 58%;          /* tweak 56–62% */
   top: 18vh;
   margin: 0;
 
@@ -269,7 +224,6 @@ main{
   color: #fff;
   white-space: nowrap;
 
-  /* center first, then do the 3D tilt */
   transform-origin: center top;
   transform:
     translateX(-50%)
