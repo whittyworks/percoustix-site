@@ -1,3 +1,5 @@
+console.log("main.js is alive");
+
 /* =========================
    Footer year
 ========================= */
