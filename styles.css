@@ -830,7 +830,7 @@ main{
   width: 100%;
   height: 260px;            /* THIS is what stops the top getting cut */
   object-fit: cover;
-  object-position: center top;
+  object-position: 65%;
 }
 /* ===== WATER SEAM (single source of truth) ===== */
 
