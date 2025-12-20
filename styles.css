@@ -803,3 +803,31 @@ main{
   margin-left: auto;
   margin-right: auto;
 }
+.hero{
+  position: relative;
+  z-index: 1;
+}
+
+.hero::after{
+  z-index: 1; /* keep the fade */
+}
+
+.water-seam{
+  position: relative;
+  z-index: 5;        /* ABOVE hero + its overlays */
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height: 0;
+  margin-top: -90px;   /* adjust */
+  margin-bottom: -70px;/* adjust */
+  pointer-events: none;/* fine to keep */
+}
+
+.water-seam img{
+  display: block;
+  width: 100%;
+  height: 180px;      /* adjust */
+  object-fit: cover;
+  object-position: center;
+}
