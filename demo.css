@@ -1,0 +1,144 @@
+/* Page background: space vibe but readable */
+.demo-page{
+  background-color: #02020a;
+  background-image:
+    radial-gradient(circle at 65% 25%, rgba(47,211,255,.12), rgba(0,0,0,0) 55%),
+    linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.85));
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: scroll;
+}
+
+.demo-hero{
+  padding: 130px 0 90px; /* account for fixed header */
+}
+
+.demo-subtitle{
+  max-width: 720px;
+  margin: 0 auto 26px;
+  text-align: center;
+  font-size: 18px;
+  opacity: .9;
+  text-shadow: 0 6px 20px rgba(0,0,0,.65);
+}
+
+/* Two-column layout: stage + panel */
+.demo-layout{
+  display: grid;
+  grid-template-columns: 1.5fr .9fr;
+  gap: 18px;
+  align-items: start;
+}
+
+@media (max-width: 980px){
+  .demo-layout{ grid-template-columns: 1fr; }
+}
+
+/* Stage holds the image + absolute hotspots */
+.demo-stage{
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.25);
+  box-shadow: 0 20px 70px rgba(0,0,0,.60);
+}
+
+.demo-img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Hotspots */
+.hotspot{
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  transform: translate(-50%, -50%);
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.35);
+  background: rgba(47,211,255,.95);
+  cursor: pointer;
+  padding: 0;
+  box-shadow: 0 0 0 1px rgba(47,211,255,.35), 0 0 22px rgba(47,211,255,.45);
+}
+
+.hotspot:focus-visible{
+  outline: 3px solid rgba(47,211,255,.7);
+  outline-offset: 4px;
+}
+
+.hotspot-ring{
+  position: absolute;
+  inset: -14px;
+  border-radius: 999px;
+  border: 1px solid rgba(47,211,255,.35);
+  animation: pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes pulse{
+  0%,100%{ transform: scale(.85); opacity: .55; }
+  50%{ transform: scale(1.15); opacity: 1; }
+}
+
+/* Panel */
+.demo-panel{
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(0,0,0,.35);
+  box-shadow: 0 20px 70px rgba(0,0,0,.55);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 110px; /* below header */
+}
+
+@media (max-width: 980px){
+  .demo-panel{ position: relative; top: auto; }
+}
+
+.demo-panel-inner{
+  padding: 18px 18px 16px;
+}
+
+.demo-panel-kicker{
+  font-family: Orbitron, Inter, sans-serif;
+  color: rgba(47,211,255,.95);
+  letter-spacing: 1px;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.demo-panel-title{
+  margin: 0 0 10px;
+  font-family: "Bebas Neue", Inter, sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 40px;
+}
+
+.demo-panel-body{
+  margin: 0 0 12px;
+  opacity: .92;
+  line-height: 1.6;
+}
+
+.demo-panel-hint{
+  opacity: .75;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.demo-panel-hint code{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  color: rgba(47,211,255,.95);
+}.hotspot.is-active{
+  background: rgba(255,10,213,.95);
+  box-shadow: 0 0 0 1px rgba(255,10,213,.35), 0 0 26px rgba(255,10,213,.55);
+}
+.hotspot.is-active .hotspot-ring{
+  border-color: rgba(255,10,213,.35);
+}
+

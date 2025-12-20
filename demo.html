@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Interactive Demo · Percoustix</title>
+  <meta name="description" content="Tap the pads to learn what each part does." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@500;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css?v=7" />
+  <link rel="stylesheet" href="demo.css?v=1" />
+</head>
+
+<body class="demo-page">
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="logo" href="index.html#top" aria-label="Percoustix home">
+        <span class="logo-mark">P</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="index.html">HOME</a>
+        <a href="how-it-works.html">HOW IT WORKS</a>
+        <a href="demo.html" class="active">DEMO</a>
+        <a href="index.html#our-story">OUR STORY</a>
+        <a href="index.html#shop">SHOP</a>
+      </nav>
+
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        MENU
+      </button>
+
+      <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <a href="index.html">HOME</a>
+        <a href="how-it-works.html">HOW IT WORKS</a>
+        <a href="demo.html">DEMO</a>
+        <a href="index.html#our-story">OUR STORY</a>
+        <a href="index.html#shop">SHOP</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="demo-main" id="top">
+    <section class="demo-hero">
+      <div class="container">
+        <h1 class="section-title-big">Tap the Pads</h1>
+        <p class="demo-subtitle">
+          Click a hotspot to learn what each pad does. (Yes, it’s allowed to be fun.)
+        </p>
+
+        <div class="demo-layout">
+          <!-- STAGE -->
+          <div class="demo-stage" aria-label="Interactive guitar demo">
+            <img
+              class="demo-img"
+              src="assets/img/guitar-pic.jpg"
+              alt="Guitar with Percoustix pads mounted near the sound hole"
+              loading="eager"
+            />
+
+            <!-- HOTSPOTS: adjust --x/--y to move them -->
+            <button class="hotspot"
+              style="--x: 31%; --y: 60%;"
+              data-title="Left Pad"
+              data-body="This pad is positioned for your strumming-hand taps. Great for kick/snare patterns without changing how you play."
+              aria-label="Left pad hotspot">
+              <span class="hotspot-ring" aria-hidden="true"></span>
+            </button>
+
+            <button class="hotspot"
+              style="--x: 64%; --y: 60%;"
+              data-title="Right Pad"
+              data-body="This pad sits where your hand naturally lands for accents. Map it to hats, claps, percussion, or whatever groove you want."
+              aria-label="Right pad hotspot">
+              <span class="hotspot-ring" aria-hidden="true"></span>
+            </button>
+
+            <button class="hotspot"
+              style="--x: 50%; --y: 57%;"
+              data-title="Sound Hole Area"
+              data-body="Percoustix mounts close to the sound hole so you can play rhythm + harmony together without bulky hardware."
+              aria-label="Sound hole hotspot">
+              <span class="hotspot-ring" aria-hidden="true"></span>
+            </button>
+          </div>
+
+          <!-- INFO PANEL -->
+          <aside class="demo-panel" aria-live="polite">
+            <div class="demo-panel-inner">
+              <div class="demo-panel-kicker">DEMO INFO</div>
+              <h2 class="demo-panel-title" id="demoTitle">Click a hotspot</h2>
+              <p class="demo-panel-body" id="demoBody">
+                Tap any glowing dot on the guitar to learn what it does.
+              </p>
+
+              <div class="demo-panel-hint">
+                Tip: if a dot feels “off,” change its <code>--x</code> / <code>--y</code> values in the button’s style.
+              </div>
+            </div>
+          </aside>
+        </div>
+
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <p>© <span id="year"></span> Percoustix</p>
+      </div>
+    </footer>
+  </main>
+
+  <script src="main.js?v=1"></script>
+  <script src="demo.js?v=1"></script>
+</body>
+</html>
