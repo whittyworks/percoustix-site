@@ -428,8 +428,7 @@ main{
   flex-direction: column;
   justify-content: center;
   gap: 10px;
-  padding: 22px;
-  z-index: 1;
+  padding: 26px 30px 26px 34px;  z-index: 1;
 
   backface-visibility: hidden;
   transform-style: preserve-3d;
