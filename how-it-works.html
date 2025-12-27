@@ -104,18 +104,65 @@
     </section>
 
     <!-- VIDEO -->
-    <section class="howitworks-section" id="video">
+    <section class="demo-hero">
       <div class="container">
-        <h2 class="section-title section-title-big">Watch It</h2>
+        <h1 class="section-title-big">Tap the Pads</h1>
+        <p class="demo-subtitle">
+          Click a hotspot to learn what each pad does. (Yes, it’s allowed to be fun.)
+        </p>
 
-        <div class="video-glow-frame">
-          <video
-            src="assets/video/percoustix-how-it-works.mp4"
-            controls
-            playsinline
-            preload="metadata"
-          ></video>
+        <div class="demo-layout">
+          <!-- STAGE -->
+          <div class="demo-stage" aria-label="Interactive guitar demo">
+            <img
+              class="demo-img"
+              src="assets/img/guitar-pic.jpg"
+              alt="Guitar with Percoustix pads mounted near the sound hole"
+              loading="eager"
+            />
+
+            <!-- HOTSPOTS: adjust --x/--y to move them -->
+            <button class="hotspot"
+              style="--x: 33%; --y: 65%;"
+              data-title="Left Pad"
+              data-body="This pad is positioned for your strumming-hand taps. Great for kick/snare patterns without changing how you play."
+              aria-label="Left pad hotspot">
+              <span class="hotspot-ring" aria-hidden="true"></span>
+            </button>
+
+            <button class="hotspot"
+              style="--x: 68%; --y: 75%;"
+              data-title="Right Pad"
+              data-body="This pad sits where your hand naturally lands for accents. Map it to hats, claps, percussion, or whatever groove you want."
+              aria-label="Right pad hotspot">
+              <span class="hotspot-ring" aria-hidden="true"></span>
+            </button>
+
+            <button class="hotspot"
+              style="--x: 50%; --y: 60%;"
+              data-title="Sound Hole Area"
+              data-body="Percoustix mounts close to the sound hole so you can play rhythm + harmony together without bulky hardware."
+              aria-label="Sound hole hotspot">
+              <span class="hotspot-ring" aria-hidden="true"></span>
+            </button>
+          </div>
+
+          <!-- INFO PANEL -->
+          <aside class="demo-panel" aria-live="polite">
+            <div class="demo-panel-inner">
+              <div class="demo-panel-kicker">DEMO INFO</div>
+              <h2 class="demo-panel-title" id="demoTitle">Click a hotspot</h2>
+              <p class="demo-panel-body" id="demoBody">
+                Tap any glowing dot on the guitar to learn what it does.
+              </p>
+
+              <div class="demo-panel-hint">
+                Tip: if a dot feels “off,” change its <code>--x</code> / <code>--y</code> values in the button’s style.
+              </div>
+            </div>
+          </aside>
         </div>
+
       </div>
     </section>
 
