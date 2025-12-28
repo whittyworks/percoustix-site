@@ -413,14 +413,16 @@
     0 0 40px rgba(47,211,255,.15),
     0 20px 60px rgba(0,0,0,.6);
   margin-bottom: 24px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
 }
 
 .flow-preview-img:hover {
-  transform: translateY(-3px);
+  transform: translateY(-6px) scale(1.02);
   box-shadow: 
-    0 0 50px rgba(47,211,255,.25),
-    0 24px 70px rgba(0,0,0,.7);
+    0 0 60px rgba(47,211,255,.4),
+    0 28px 80px rgba(0,0,0,.8);
+  border-color: rgba(47,211,255,.5);
 }
 
 .flow-cta {
