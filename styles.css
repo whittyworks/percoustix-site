@@ -6,6 +6,7 @@
 
 *{ box-sizing: border-box; }
 html, body{ margin:0; padding:0; }
+html { overflow-x: hidden; }
 
 body{
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -192,6 +193,8 @@ body::after {
 main{
   position: relative;
   height: auto;
+  margin: 0;
+  padding: 0;
 }
 
 /* HERO stays SPACE */
@@ -200,6 +203,7 @@ main{
   height: 100vh;
   max-height: 1200px;
   overflow: visible;
+  margin-top: 0;
 
   background-image: url("assets/img/hero-bg-2.png");
   background-repeat: no-repeat;
@@ -713,10 +717,21 @@ main{
   text-align: center;
   margin: 0 0 26px;
   font-family: "Bebas Neue", Inter, sans-serif;
-  font-size: clamp(56px, 7vw, 120px);
+  font-size: clamp(36px, 7vw, 120px);
   letter-spacing: 6px;
   text-transform: uppercase;
   text-shadow: 0 10px 30px rgba(0,0,0,.85);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Mobile: even smaller title to prevent overflow */
+@media (max-width: 600px) {
+  .section-title-big {
+    font-size: clamp(28px, 8vw, 48px);
+    letter-spacing: 2px;
+    padding: 0 12px;
+  }
 }
 
 /* Optional: give sections a little breathing room above the title */
