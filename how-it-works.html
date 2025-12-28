@@ -10,10 +10,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@500;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
-  <!-- Your existing global styles -->
-  <link rel="stylesheet" href="styles.css?v=12" />
-  <!-- Page-specific “crazy vibe” styles -->
-  <link rel="stylesheet" href="how-it-works.css?v=12" />
+  <link rel="stylesheet" href="styles.css?v=14" />
+  <link rel="stylesheet" href="how-it-works.css?v=13" />
 </head>
 
 <body class="howitworks-page">
@@ -22,12 +20,13 @@
       <a class="logo" href="index.html#top" aria-label="Percoustix home">
         <img src="assets/img/percoustix-logo.png" alt="Percoustix" class="logo-img">
       </a>
+
       <nav class="nav" aria-label="Primary navigation">
         <a href="index.html">HOME</a>
         <a href="/percoustix-site/how-it-works.html" class="active">HOW IT WORKS</a>
         <a href="/percoustix-site/our-story.html">OUR STORY</a>
-        <a href="/percoustix-site/index.html#join-the-band">JOIN THE BAND</a>
-        <a href="/percoustix-site/index.html#kickstarter">KICKSTARTER</a>
+        <a href="index.html#join-the-band">JOIN THE BAND</a>
+        <a href="index.html#kickstarter">KICKSTARTER</a>
       </nav>
 
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
@@ -36,16 +35,16 @@
 
       <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
         <a href="index.html">HOME</a>
-        <a href="/percoustix-site/how-it-works.html" class="active">HOW IT WORKS</a>        
+        <a href="/percoustix-site/how-it-works.html" class="active">HOW IT WORKS</a>
         <a href="/percoustix-site/our-story.html">OUR STORY</a>
-        <a href="/percoustix-site/index.html#join-the-band">JOIN THE BAND</a>
-        <a href="/percoustix-site/index.html#kickstarter">KICKSTARTER</a>
+        <a href="index.html#join-the-band">JOIN THE BAND</a>
+        <a href="index.html#kickstarter">KICKSTARTER</a>
       </nav>
     </div>
   </header>
 
   <main id="top" class="howitworks-main">
-    <!-- HERO / POSTER CANVAS -->
+    <!-- HERO -->
     <section class="howitworks-hero" aria-label="How it Works hero">
       <div class="howitworks-hero-inner">
         <h1 class="howitworks-title" data-text="HOW IT WORKS">
@@ -87,14 +86,27 @@
             <p>Strum and tap in the same performance. Rhythm + harmony, together.</p>
           </article>
         </div>
+      </div>
+    </section>
 
-        <!-- Optional: add your “graphic” later -->
-        <div class="how-graphic-placeholder">
-          <div class="how-graphic-box">
-            <div class="how-graphic-title">Signal Flow (optional)</div>
-            <div class="how-graphic-body">
-              Drop your diagram/graphic here when it’s ready.
-            </div>
+    <!-- SIGNAL FLOW DIAGRAM -->
+    <section class="howitworks-section flow-section" id="signal-flow">
+      <div class="container">
+        <h2 class="section-title section-title-big">The Signal Flow</h2>
+        
+        <p class="flow-intro">
+          Here's exactly how Percoustix transforms your guitar into a rhythm machine:
+        </p>
+
+        <!-- Preview Image (top section of flow chart) -->
+        <div class="flow-preview-container">
+          <img src="assets/img/flow-preview.png" alt="Percoustix Signal Flow Preview" class="flow-preview-img">
+          
+          <div class="flow-cta">
+            <button class="btn btn-primary" id="viewFlowBtn">View Full Signal Flow Diagram</button>
+            <a href="assets/img/percoustix-flow-chart.png" download class="btn btn-ghost">
+              Download Diagram
+            </a>
           </div>
         </div>
       </div>
@@ -116,12 +128,12 @@
       </div>
     </section>
 
-
-        <section class="demo-hero">
+    <!-- INTERACTIVE DEMO -->
+    <section class="demo-hero">
       <div class="container">
         <h1 class="section-title-big">Tap the Pads</h1>
         <p class="demo-subtitle">
-          Click a hotspot to learn what each pad does. (Yes, it’s allowed to be fun.)
+          Click a hotspot to learn what each pad does. (Yes, it's allowed to be fun.)
         </p>
 
         <div class="demo-layout">
@@ -134,7 +146,7 @@
               loading="eager"
             />
 
-            <!-- HOTSPOTS: adjust --x/--y to move them -->
+            <!-- HOTSPOTS -->
             <button class="hotspot"
               style="--x: 33%; --y: 65%;"
               data-title="Left Pad"
@@ -170,18 +182,15 @@
               </p>
 
               <div class="demo-panel-hint">
-                Tip: if a dot feels “off,” change its <code>--x</code> / <code>--y</code> values in the button’s style.
+                Tip: if a dot feels "off," change its <code>--x</code> / <code>--y</code> values in the button's style.
               </div>
             </div>
           </aside>
         </div>
-
       </div>
     </section>
 
-
-
-    <!-- FAQ-ish -->
+    <!-- FAQ -->
     <section class="howitworks-section" id="faq">
       <div class="container">
         <h2 class="section-title section-title-big">Quick Answers</h2>
@@ -194,12 +203,12 @@
 
           <details class="faq">
             <summary>Is it loud on the guitar acoustically?</summary>
-            <p>The pads aren’t “audible drums” on the guitar body. The sound comes through your rig.</p>
+            <p>The pads aren't "audible drums" on the guitar body. The sound comes through your rig.</p>
           </details>
 
           <details class="faq">
             <summary>What gear do I need?</summary>
-            <p>We’ll list supported setups here once you confirm the exact signal chain.</p>
+            <p>We'll list supported setups here once you confirm the exact signal chain.</p>
           </details>
         </div>
       </div>
@@ -212,6 +221,55 @@
     </footer>
   </main>
 
+  <!-- MODAL FOR FULL FLOW CHART -->
+  <div class="flow-modal" id="flowModal">
+    <div class="flow-modal-overlay" id="flowModalOverlay"></div>
+    <div class="flow-modal-content">
+      <button class="flow-modal-close" id="closeFlowBtn" aria-label="Close diagram">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <img src="assets/img/percoustix-flow-chart.png" alt="Complete Percoustix Signal Flow Diagram" class="flow-modal-img">
+      <a href="assets/img/percoustix-flow-chart.png" download class="btn btn-primary flow-download-btn">
+        Download Full Diagram
+      </a>
+    </div>
+  </div>
+
   <script src="main.js"></script>
+  <script>
+    // Flow chart modal functionality
+    const viewFlowBtn = document.getElementById('viewFlowBtn');
+    const closeFlowBtn = document.getElementById('closeFlowBtn');
+    const flowModal = document.getElementById('flowModal');
+    const flowModalOverlay = document.getElementById('flowModalOverlay');
+
+    if (viewFlowBtn && flowModal) {
+      viewFlowBtn.addEventListener('click', () => {
+        flowModal.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      });
+
+      closeFlowBtn.addEventListener('click', () => {
+        flowModal.classList.remove('is-open');
+        document.body.style.overflow = '';
+      });
+
+      flowModalOverlay.addEventListener('click', () => {
+        flowModal.classList.remove('is-open');
+        document.body.style.overflow = '';
+      });
+
+      // Close on ESC key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && flowModal.classList.contains('is-open')) {
+          flowModal.classList.remove('is-open');
+          document.body.style.overflow = '';
+        }
+      });
+    }
+  </script>
 </body>
 </html>
