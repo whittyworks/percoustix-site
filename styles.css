@@ -994,9 +994,9 @@ main{
     line-height: 1.1;
   }
 
+  /* HIDE shadow on mobile - it doesn't match the multi-line text */
   .space-title::after{
-    transform: translate(4px, 4px);
-    white-space: pre-line; /* Match parent */
+    display: none;
   }
   
   /* Switch to mobile title version */
