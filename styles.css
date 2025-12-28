@@ -414,7 +414,7 @@ main{
 .space-title{
   position: absolute;
   left: 50%;
-  top: 12vh;
+  top: 8vh; /* MOVED UP - was 12vh - gives more room on smaller screens */
   margin: 0;
 
   font-family: "Bebas Neue", Inter, sans-serif;
