@@ -1,325 +1,274 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Percoustix - Beats Just Playing Guitar</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Percoustix</title>
+  <meta name="description" content="Percoustix: Beats just playing guitar." />
+
+  <!-- Fonts to match the bold sci-fi / poster vibe -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@500;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css?v=8" />
 </head>
-<body class="bg-black text-white">
-    
-    <!-- Navigation -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-6">
-        <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
-            <div class="flex items-center space-x-2">
-                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center">
-                    <div class="text-black font-bold text-xl">P</div>
-                </div>
-                <span class="text-xl font-bold tracking-wider">PERCOUSTIX</span>
-            </div>
-            
-            <!-- Desktop Nav -->
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="#how-it-works" class="text-sm uppercase tracking-wide hover:text-cyan-400 transition-colors">How It Works</a>
-                <a href="#our-story" class="text-sm uppercase tracking-wide hover:text-cyan-400 transition-colors">Our Story</a>
-                <a href="#community" class="text-sm uppercase tracking-wide hover:text-cyan-400 transition-colors">Community</a>
-                <a href="#media" class="text-sm uppercase tracking-wide hover:text-cyan-400 transition-colors">Media</a>
-                <a href="#shop" class="text-sm uppercase tracking-wide hover:text-cyan-400 transition-colors">Shop</a>
-                <a href="#contact" class="text-sm uppercase tracking-wide hover:text-cyan-400 transition-colors">Contact</a>
-            </div>
+<body>
 
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="md:hidden">
-                <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-                <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            </button>
-        </div>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="Percoustix home">
+      <span class="logo-mark">P</span>
+    </a>
 
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-black backdrop-blur-lg">
-            <div class="px-6 py-4 space-y-4">
-                <a href="#how-it-works" class="block text-lg hover:text-cyan-400 transition-colors">How It Works</a>
-                <a href="#our-story" class="block text-lg hover:text-cyan-400 transition-colors">Our Story</a>
-                <a href="#community" class="block text-lg hover:text-cyan-400 transition-colors">Community</a>
-                <a href="#media" class="block text-lg hover:text-cyan-400 transition-colors">Media</a>
-                <a href="#shop" class="block text-lg hover:text-cyan-400 transition-colors">Shop</a>
-                <a href="#contact" class="block text-lg hover:text-cyan-400 transition-colors">Contact</a>
-            </div>
-        </div>
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="#top" class="active">HOME</a>
+      <a href="/percoustix-site/how-it-works.html">HOW IT WORKS</a>
+      <a href="/percoustix-site/our-story.html">OUR STORY</a>
+      <a href="#the-band">THE BAND</a>
+      <a href="#shop">SHOP</a>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <!-- Animated Background -->
-        <div class="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-black to-black">
-            <div class="absolute inset-0 dot-pattern"></div>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+      MENU
+    </button>
+
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+      <a href="#top">HOME</a>
+      <a href="/percoustix-site/how-it-works.html">HOW IT WORKS</a>
+      <a href="/percoustix-site/our-story.html">OUR STORY</a>
+      <a href="#the-band">THE BAND</a>
+      <a href="#media">MEDIA</a>
+      <a href="#shop">SHOP</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<main id="top">
+  <section class="hero">
+    <!-- Main Product Showcase -->
+    <div class="hero-product">
+      <img src="assets/img/product-img.png" alt="Percoustix on Guitar" class="product-image">
+    </div>
+    
+    <!-- Title -->
+    <h1 class="space-title" data-text="BEATS JUST PLAYING GUITAR!">
+      BEATS JUST PLAYING GUITAR!
+    </h1>
+    
+    <!-- Floating Mascot Stickers -->
+    <div class="mascot-stickers">
+      <!-- Astronaut & Bear (bottom left) -->
+      <img src="assets/img/mascots.png" alt="" class="mascot mascot-band">
+      
+      <!-- UFO/Turntable (top right) -->
+      <img src="assets/img/turntable.png" alt="" class="mascot mascot-ufo">
+    </div>
+  </section>
+
+  <div class="water-seam" aria-hidden="true">
+    <img src="assets/img/water-seam.png" alt="">
+  </div>
+
+  <!-- WHY PERCOUSTIX -->
+  <section class="why" id="our-story">
+    <div class="why-overlay">
+      <h2 class="why-title section-title-big">WHY PERCOUSTIX?</h2>
+ 
+      <div class="how-media">
+        <div class="video-glow-frame">
+          <video
+            src="assets/video/how-it-works.mp4"
+            controls
+            playsinline
+            preload="metadata"
+          ></video>
+        </div>
+      </div>
+
+      <p class="how-caption">Guitar and drums. One motion.</p>
+    </div>
+
+    <div class="pad-grid" id="why-pads">
+      <!-- Pad 1 -->
+      <button class="pad-card" type="button" aria-pressed="false">
+        <span class="pad-face pad-front">
+          <span class="pad-kicker">WHY PERCOUSTIX</span>
+          <span class="pad-title">Creativity explodes</span>
+          <span class="pad-body">when you mix drums + guitar.</span>
+          <span class="pad-hint">Tap to reveal</span>
+        </span>
+
+        <span class="pad-face pad-back">
+          <span class="pad-title">Mix without limits</span>
+          <span class="pad-body">
+            Percoustix lets your guitar become a rhythmic instrument without changing how you play.
+          </span>
+          <span class="pad-hint">Tap to flip back</span>
+        </span>
+      </button>
+
+      <!-- Pad 2 -->
+      <button class="pad-card" type="button" aria-pressed="false">
+        <span class="pad-face pad-front">
+          <span class="pad-kicker">PROBLEM</span>
+          <span class="pad-title">Guitars weren't built</span>
+          <span class="pad-body">to make the drum sounds you hear in your head.</span>
+          <span class="pad-hint">Tap to reveal</span>
+        </span>
+
+        <span class="pad-face pad-back">
+          <span class="pad-title">Dead silent unless you play</span>
+          <span class="pad-body">
+            The pads don't make noise until your hand hits them. Clean control, real feel.
+          </span>
+          <span class="pad-hint">Tap to flip back</span>
+        </span>
+      </button>
+
+      <!-- Pad 3 -->
+      <button class="pad-card" type="button" aria-pressed="false">
+        <span class="pad-face pad-front">
+          <span class="pad-kicker">SOLUTION</span>
+          <span class="pad-title">So we invented</span>
+          <span class="pad-body">Percoustix.</span>
+          <span class="pad-hint">Tap to reveal</span>
+        </span>
+
+        <span class="pad-face pad-back">
+          <span class="pad-title">Beats. Just. Playing. Guitar.</span>
+          <span class="pad-body">
+            Turn strumming patterns into full grooves. Keep it musical, not gimmicky.
+          </span>
+          <span class="pad-hint">Tap to flip back</span>
+        </span>
+      </button>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section how-it-works" id="how-it-works">
+    <div class="container">
+      <h2 class="section-title section-title-big">How It Works</h2>
+
+      <div class="how-steps">
+        <div class="how-step">
+          <div class="step-number">01</div>
+          <h3>Attach</h3>
+          <p>Mount Percoustix pads directly onto your guitar. No bulky rigs. No awkward positioning.</p>
         </div>
 
-        <!-- Floating Mascots -->
-        <!-- TO USE CUSTOM IMAGES: Extract mascots from your PNG vision, save as transparent PNGs, 
-             then replace the emoji divs below with <img> tags pointing to your images -->
-        <div class="floating-mascot astronaut-fish">
-            <div class="mascot-placeholder">🐠🚀</div>
-            <!-- Example: <img src="images/astronaut-fish.png" alt="Astronaut Fish" style="width: 200px;"> -->
-        </div>
-        <div class="floating-mascot bear-suit">
-            <div class="mascot-placeholder">🐻🎸</div>
-            <!-- Example: <img src="images/bear-guitar.png" alt="Bear with Guitar" style="width: 180px;"> -->
-        </div>
-        <div class="floating-mascot ufo-band">
-            <div class="mascot-placeholder">🛸🎵</div>
-            <!-- Example: <img src="images/ufo-band.png" alt="UFO Band" style="width: 220px;"> -->
-        </div>
-        <div class="floating-mascot space-guitar">
-            <div class="mascot-placeholder">✨🎸</div>
-            <!-- Example: <img src="images/space-guitar.png" alt="Space Guitar" style="width: 150px;"> -->
+        <div class="how-step">
+          <div class="step-number">02</div>
+          <h3>Assign</h3>
+          <p>Choose your drum sounds or kits. Each pad becomes a kick, snare, or whatever your groove needs.</p>
         </div>
 
-        <div class="relative z-10 max-w-6xl mx-auto px-6 text-center pt-32 pb-20">
-            <div class="mb-8">
-                <span class="text-cyan-400 text-sm uppercase tracking-widest font-semibold">Revolutionary Music Tech</span>
-            </div>
-            
-            <h1 class="text-6xl md:text-8xl font-bold mb-6 leading-tight">
-                BEATS<br>
-                <span class="gradient-text">JUST PLAYING</span><br>
-                GUITAR
-            </h1>
-            
-            <p class="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-                Transform your guitar into a complete rhythm section. Percoustix brings percussion to your fingertips.
-            </p>
-
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <button class="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 px-8 py-4 rounded-full text-lg font-semibold transition-all transform hover:scale-105 shadow-lg shadow-cyan-500/50">
-                    Shop Percoustix
-                </button>
-                <button class="border-2 border-white hover:bg-white hover:text-black px-8 py-4 rounded-full text-lg font-semibold transition-all flex items-center gap-2">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z"/>
-                    </svg>
-                    Watch Demo
-                </button>
-            </div>
-
-            <div class="mt-16 animate-bounce-slow">
-                <svg class="mx-auto text-cyan-400 w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                </svg>
-            </div>
+        <div class="how-step">
+          <div class="step-number">03</div>
+          <h3>Play</h3>
+          <p>Strum, tap, and create full rhythms while you play guitar. One instrument. Full band energy.</p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Why Percoustix Section -->
-    <section class="py-32 bg-gradient-to-b from-black to-purple-900/20 relative">
-        <!-- Floating accent elements -->
-        <div class="floating-mascot small-accent" style="top: 10%; right: 5%; font-size: 2rem;">💫</div>
-        <div class="floating-mascot small-accent" style="bottom: 15%; left: 8%; font-size: 2rem;">🌙</div>
-        
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-20">
-                <h2 class="text-5xl md:text-6xl font-bold mb-6">Why Percoustix?</h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    Because creativity happens when you mix stuff together
-                </p>
-            </div>
+  <!-- JOIN THE BAND -->
+  <section class="section join-band" id="join-the-band">
+    <div class="container center">
+      <h2 class="section-title section-title-big">Join the Band</h2>
 
-            <div class="grid md:grid-cols-3 gap-12">
-                <div class="text-center group">
-                    <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform">
-                        <span class="text-3xl">🎸</span>
+      <p class="section-subtitle">
+        Be part of the first wave shaping Percoustix.
+      </p>
+
+      <p class="join-meta">
+        Early access · Player demos · Behind-the-scenes
+      </p>
+
+      <div class="join-form-wrap">
+        <div id="mlb2-34856710" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-34856710">
+          <div class="ml-form-align-center">
+            <div class="ml-form-embedWrapper embedForm">
+              <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
+                <div class="ml-form-embedContent">
+                  <h4>Join the Band🎸</h4>
+                  <p>Be the first to know when Percoustix drops, so you can drop some beats on your guitar!</p>
+                </div>
+
+                <form class="ml-block-form"
+                      action="https://assets.mailerlite.com/jsonp/1993028/forms/174241268916814994/subscribe"
+                      method="post"
+                      target="_blank">
+                  <div class="ml-form-formContent">
+                    <div class="ml-form-fieldRow">
+                      <div class="ml-field-group ml-field-name">
+                        <input aria-label="name" type="text" class="form-control" name="fields[name]" placeholder="Name" autocomplete="given-name">
+                      </div>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">Like Drums + Guitar</h3>
-                    <p class="text-gray-400">
-                        Your guitar wasn't designed to make all the drum sounds you want to hear
-                    </p>
-                </div>
 
-                <div class="text-center group">
-                    <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform">
-                        <span class="text-3xl">🥁</span>
+                    <div class="ml-form-fieldRow ml-last-item">
+                      <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
+                        <input aria-label="email" aria-required="true" type="email" class="form-control" name="fields[email]" placeholder="Email" autocomplete="email">
+                      </div>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">Complete Control</h3>
-                    <p class="text-gray-400">
-                        Access hundreds of professional drum sounds without ever putting down your guitar
-                    </p>
-                </div>
+                  </div>
 
-                <div class="text-center group">
-                    <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-pink-500 to-orange-600 rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform">
-                        <span class="text-3xl">🚀</span>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">That's Why We Invented It</h3>
-                    <p class="text-gray-400">
-                        Take your guitar, load it with Percoustix, pair with drum modules. Magic.
-                    </p>
+                  <input type="hidden" name="ml-submit" value="1">
+                  <input type="hidden" name="anticsrf" value="true">
+
+                  <div class="ml-form-embedSubmit">
+                    <button type="submit" class="primary">Join the Band</button>
+
+                    <button disabled style="display:none" type="button" class="loading">
+                      <div class="ml-form-embedSubmitLoad"></div>
+                      <span class="sr-only">Loading...</span>
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              <div class="ml-form-successBody row-success" style="display:none">
+                <div class="ml-form-successContent">
+                  <h4>Thank you!</h4>
+                  <p>You're in the BAND!</p>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- How It Works -->
-    <section id="how-it-works" class="py-32 bg-black">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-5xl md:text-6xl font-bold text-center mb-20">How It Works</h2>
-            
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <div class="space-y-8">
-                    <div class="border-l-4 border-cyan-400 pl-6">
-                        <div class="text-cyan-400 font-bold mb-2">STEP 01</div>
-                        <h3 class="text-2xl font-bold mb-3">Mount the Pad</h3>
-                        <p class="text-gray-400">Attach Percoustix 80s to your acoustic guitar body. Non-invasive mounting preserves your instrument.</p>
-                    </div>
+      <script>
+        function ml_webform_success_34856710() {
+          const root = document.querySelector('.ml-subscribe-form-34856710');
+          if (!root) return;
 
-                    <div class="border-l-4 border-purple-400 pl-6">
-                        <div class="text-purple-400 font-bold mb-2">STEP 02</div>
-                        <h3 class="text-2xl font-bold mb-3">Connect & Configure</h3>
-                        <p class="text-gray-400">Pair with Roland drum modules or your preferred sound source. Customize your kit.</p>
-                    </div>
+          const success = root.querySelector('.row-success');
+          const form = root.querySelector('.row-form');
 
-                    <div class="border-l-4 border-pink-400 pl-6">
-                        <div class="text-pink-400 font-bold mb-2">STEP 03</div>
-                        <h3 class="text-2xl font-bold mb-3">Play & Create</h3>
-                        <p class="text-gray-400">Tap rhythms while you play. Layer beats. Create music that was impossible before.</p>
-                    </div>
-                </div>
+          if (success) success.style.display = 'block';
+          if (form) form.style.display = 'none';
+        }
+      </script>
+    </div>
+  </section>
 
-                <div class="relative">
-                    <div class="aspect-square bg-gradient-to-br from-cyan-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl flex items-center justify-center backdrop-blur-sm border border-white/10">
-                        <div class="text-center p-8">
-                            <div class="text-8xl mb-4">🎸</div>
-                            <p class="text-2xl font-bold">Your Guitar</p>
-                            <p class="text-cyan-400 text-xl mt-2">+ Percussion</p>
-                            <p class="text-purple-400 text-xl">= Endless Possibilities</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p>© <span id="year"></span> Percoustix</p>
+    </div>
+  </footer>
+</main>
 
-    <!-- Features Grid -->
-    <section class="py-32 bg-gradient-to-b from-black to-purple-900/30">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-5xl md:text-6xl font-bold text-center mb-20">Built for Musicians</h2>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all hover:border-cyan-400/50">
-                    <h3 class="text-xl font-bold mb-3">Premium Build</h3>
-                    <p class="text-gray-400 text-sm">Studio-grade materials and construction</p>
-                </div>
-                <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all hover:border-cyan-400/50">
-                    <h3 class="text-xl font-bold mb-3">Responsive Touch</h3>
-                    <p class="text-gray-400 text-sm">Velocity-sensitive pads for expressive playing</p>
-                </div>
-                <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all hover:border-cyan-400/50">
-                    <h3 class="text-xl font-bold mb-3">Universal Fit</h3>
-                    <p class="text-gray-400 text-sm">Works with Ibanez, Baton Rouge, and more</p>
-                </div>
-                <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all hover:border-cyan-400/50">
-                    <h3 class="text-xl font-bold mb-3">MIDI Compatible</h3>
-                    <p class="text-gray-400 text-sm">Integrate with your entire setup</p>
-                </div>
-                <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all hover:border-cyan-400/50">
-                    <h3 class="text-xl font-bold mb-3">Low Latency</h3>
-                    <p class="text-gray-400 text-sm">Real-time response, no lag</p>
-                </div>
-                <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all hover:border-cyan-400/50">
-                    <h3 class="text-xl font-bold mb-3">Expandable</h3>
-                    <p class="text-gray-400 text-sm">Add modules and upgrade over time</p>
-                </div>
-                <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all hover:border-cyan-400/50">
-                    <h3 class="text-xl font-bold mb-3">Road Ready</h3>
-                    <p class="text-gray-400 text-sm">Built to withstand touring life</p>
-                </div>
-                <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all hover:border-cyan-400/50">
-                    <h3 class="text-xl font-bold mb-3">Easy Setup</h3>
-                    <p class="text-gray-400 text-sm">Playing in minutes, not hours</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-32 bg-gradient-to-r from-cyan-900/40 via-purple-900/40 to-pink-900/40">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-5xl md:text-6xl font-bold mb-8">
-                Ready to Transform<br>Your Sound?
-            </h2>
-            <p class="text-xl text-gray-300 mb-12">
-                Join musicians worldwide who are redefining what's possible with guitar
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button class="bg-white text-black hover:bg-gray-200 px-10 py-5 rounded-full text-lg font-bold transition-all transform hover:scale-105 shadow-xl">
-                    Shop Now
-                </button>
-                <button class="border-2 border-white hover:bg-white hover:text-black px-10 py-5 rounded-full text-lg font-semibold transition-all">
-                    Join Our Community
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-black border-t border-white/10 py-16">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-12 mb-12">
-                <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                            <div class="text-black font-bold">P</div>
-                        </div>
-                        <span class="font-bold text-lg">PERCOUSTIX</span>
-                    </div>
-                    <p class="text-gray-400 text-sm">Redefining guitar percussion</p>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold mb-4">Product</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 text-sm transition-colors">How It Works</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 text-sm transition-colors">Features</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 text-sm transition-colors">Specifications</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 text-sm transition-colors">Shop</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-bold mb-4">Company</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 text-sm transition-colors">Our Story</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 text-sm transition-colors">Media</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 text-sm transition-colors">Contact</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 text-sm transition-colors">Careers</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-bold mb-4">Community</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 text-sm transition-colors">Join Discord</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 text-sm transition-colors">Artists</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 text-sm transition-colors">Tutorials</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 text-sm transition-colors">Support</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="border-t border-white/10 pt-8 text-center text-gray-400 text-sm">
-                <p>&copy; 2024 Percoustix. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
+<script src="https://groot.mailerlite.com/js/w/webforms.min.js" type="text/javascript"></script>
+<script>
+  fetch("https://assets.mailerlite.com/jsonp/1993028/forms/174241268916814994/takel");
+</script>
+<script src="main.js?v=2"></script>
 
 </body>
 </html>

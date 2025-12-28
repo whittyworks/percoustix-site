@@ -1,28 +1,94 @@
-// Mobile Menu Toggle
-const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-const mobileMenu = document.getElementById('mobile-menu');
-const menuIcon = document.getElementById('menu-icon');
-const closeIcon = document.getElementById('close-icon');
+console.log("main.js is alive");
 
-mobileMenuBtn.addEventListener('click', function() {
-    mobileMenu.classList.toggle('hidden');
-    menuIcon.classList.toggle('hidden');
-    closeIcon.classList.toggle('hidden');
-});
+/* =========================
+   Footer year
+========================= */
+const yearEl = document.getElementById("year");
+if (yearEl) {
+  yearEl.textContent = new Date().getFullYear();
+}
 
-// Navbar Scroll Effect
-const navbar = document.getElementById('navbar');
+/* =========================
+   Mobile navigation toggle
+========================= */
+const navToggle = document.querySelector(".nav-toggle");
+const mobileNav = document.getElementById("mobile-nav");
 
-window.addEventListener('scroll', function() {
-    if (window.scrollY > 50) {
-        navbar.classList.add('nav-scrolled');
-        navbar.classList.remove('py-6');
-        navbar.classList.add('py-4');
-    } else {
-        navbar.classList.remove('nav-scrolled');
-        navbar.classList.remove('py-4');
-        navbar.classList.add('py-6');
+if (navToggle && mobileNav) {
+  navToggle.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const isOpen = mobileNav.classList.toggle("is-open");
+    navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  });
+
+  // Close menu when a link is clicked
+  mobileNav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileNav.classList.remove("is-open");
+      navToggle.setAttribute("aria-expanded", "false");
+    });
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!mobileNav.contains(e.target) && !navToggle.contains(e.target)) {
+      mobileNav.classList.remove("is-open");
+      navToggle.setAttribute("aria-expanded", "false");
     }
+  });
+
+  // Close menu when resizing back to desktop
+  window.addEventListener("resize", () => {
+    if (window.matchMedia("(min-width: 981px)").matches) {
+      mobileNav.classList.remove("is-open");
+      navToggle.setAttribute("aria-expanded", "false");
+    }
+  });
+}
+
+/* =========================
+   Pad-card click-to-reveal
+   (Why Percoustix)
+========================= */
+// Put pad-card keyboard access and demo wiring inside DOMContentLoaded
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".pad-card").forEach((card) => {
+    card.addEventListener("click", (e) => {
+      e.preventDefault();
+      card.classList.toggle("is-flipped");
+      card.setAttribute("aria-pressed", card.classList.contains("is-flipped"));
+    });
+
+    // Keyboard accessibility (Enter / Space)
+    card.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        card.classList.toggle("is-flipped");
+        card.setAttribute("aria-pressed", card.classList.contains("is-flipped"));
+      }
+    });
+  });
+
+  /* js from demo page: wire hotspots to the demo panel */
+  const titleEl = document.getElementById("demoTitle");
+  const bodyEl  = document.getElementById("demoBody");
+  const spots   = document.querySelectorAll(".hotspot");
+
+  if (titleEl && bodyEl && spots.length) {
+    spots.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const title = btn.getAttribute("data-title") || "Details";
+        const body  = btn.getAttribute("data-body")  || "No description set.";
+
+        titleEl.textContent = title;
+        bodyEl.textContent = body;
+
+        // Small "active" feedback
+        spots.forEach(s => s.classList.remove("is-active"));
+        btn.classList.add("is-active");
+      });
+    });
+  }
 });
 
 /* =========================
@@ -36,49 +102,4 @@ document.addEventListener('mousemove', (e) => {
   document.body.appendChild(trail);
   
   setTimeout(() => trail.remove(), 500);
-});
-
-// Smooth Scroll for Anchor Links
-document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        
-        if (target) {
-            target.scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start'
-            });
-            
-            // Close mobile menu if open
-            if (!mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.add('hidden');
-                menuIcon.classList.remove('hidden');
-                closeIcon.classList.add('hidden');
-            }
-        }
-    });
-});
-
-// Optional: Add fade-in animation on scroll
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
-
-const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Apply fade-in to sections
-document.querySelectorAll('section').forEach(section => {
-    section.style.opacity = '0';
-    section.style.transform = 'translateY(20px)';
-    section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-    observer.observe(section);
 });
