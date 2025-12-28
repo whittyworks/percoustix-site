@@ -353,6 +353,17 @@ main{
   text-shadow: 0 10px 30px rgba(0,0,0,.85);
 }
 
+.why-subtitle{
+  text-align: center;
+  margin: -10px auto 28px;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: clamp(16px, 2.5vw, 20px);
+  font-style: italic;
+  color: rgba(255,255,255,.85);
+  letter-spacing: 0.3px;
+  max-width: 600px;
+}
+
 .why-cards{
   display:grid;
   gap: 14px;
