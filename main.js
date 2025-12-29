@@ -111,24 +111,44 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroGuitar = document.getElementById('heroGuitar');
   
   if (heroGuitar) {
-    // Intersection Observer for scroll-triggered animation
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-        }
-      });
-    }, {
-      threshold: 0.2,
-      rootMargin: '0px'
-    });
-    
-    observer.observe(heroGuitar);
-    
-    // Trigger immediately if already in view (page refresh)
+    // Initial fade-in animation
     setTimeout(() => {
       heroGuitar.classList.add('is-visible');
     }, 100);
+    
+    // Parallax scroll effect - guitar moves as you scroll
+    let ticking = false;
+    
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrolled = window.pageYOffset;
+          const heroHeight = document.querySelector('.hero').offsetHeight;
+          
+          // Only apply parallax while in hero section
+          if (scrolled < heroHeight) {
+            // Guitar moves down slower than scroll (parallax)
+            const parallaxSpeed = 0.3; // Lower = slower movement
+            const yPos = scrolled * parallaxSpeed;
+            
+            // Subtle rotation and scale based on scroll
+            const rotation = scrolled * 0.02; // Slight tilt
+            const scale = 1 - (scrolled * 0.0001); // Slight shrink
+            
+            heroGuitar.style.transform = `
+              translate(-50%, -50%) 
+              translateY(${yPos}px) 
+              rotate(${rotation}deg) 
+              scale(${Math.max(scale, 0.85)})
+            `;
+          }
+          
+          ticking = false;
+        });
+        
+        ticking = true;
+      }
+    });
   }
 });
 
