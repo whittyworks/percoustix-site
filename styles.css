@@ -1317,6 +1317,13 @@ main{
   );
   border-top: 1px solid rgba(47,211,255,.15);
   position: relative;
+  z-index: 0; /* Behind guitar (z-index: 1) so guitar shows in front of background */
+}
+
+/* All content inside kickstarter appears above guitar */
+.kickstarter-section > * {
+  position: relative;
+  z-index: 3;
 }
 
 .kickstarter-section::before {
@@ -1342,6 +1349,8 @@ main{
   max-width: 700px;
   color: rgba(255,255,255,.85);
   letter-spacing: 0.3px;
+  position: relative;
+  z-index: 3; /* Above guitar */
 }
 
 /* Timeline Roadmap */
@@ -1353,6 +1362,8 @@ main{
   margin: 60px auto;
   max-width: 900px;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 3; /* Above guitar */
 }
 
 .timeline-item {
@@ -1435,6 +1446,8 @@ main{
 /* Benefits Section */
 .kickstarter-benefits {
   margin: 80px 0 60px;
+  position: relative;
+  z-index: 3; /* Above guitar */
 }
 
 .benefits-title {
@@ -1503,6 +1516,8 @@ main{
     transparent 70%
   );
   border-radius: 20px;
+  position: relative;
+  z-index: 3; /* Above guitar */
 }
 
 .cta-text {
