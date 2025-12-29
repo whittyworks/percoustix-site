@@ -103,3 +103,77 @@ document.addEventListener('mousemove', (e) => {
   
   setTimeout(() => trail.remove(), 500);
 });
+
+/* =========================
+   SCROLL-BASED GUITAR ANIMATION
+========================= */
+document.addEventListener('DOMContentLoaded', () => {
+  const heroGuitar = document.getElementById('heroGuitar');
+  
+  if (heroGuitar) {
+    // Intersection Observer for scroll-triggered animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, {
+      threshold: 0.2,
+      rootMargin: '0px'
+    });
+    
+    observer.observe(heroGuitar);
+    
+    // Trigger immediately if already in view (page refresh)
+    setTimeout(() => {
+      heroGuitar.classList.add('is-visible');
+    }, 100);
+  }
+});
+
+/* =========================
+   INTERACTIVE GUITAR HOTSPOTS
+========================= */
+document.addEventListener('DOMContentLoaded', () => {
+  const hotspots = document.querySelectorAll('.guitar-hotspot');
+  const infoPanel = document.getElementById('hotspotInfo');
+  const infoTitle = document.getElementById('hotspotTitle');
+  const infoDescription = document.getElementById('hotspotDescription');
+  
+  if (!hotspots.length || !infoPanel) return;
+  
+  hotspots.forEach(hotspot => {
+    hotspot.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      const title = hotspot.getAttribute('data-title');
+      const description = hotspot.getAttribute('data-description');
+      
+      // Update content
+      infoTitle.textContent = title;
+      infoDescription.textContent = description;
+      
+      // Toggle active states
+      hotspots.forEach(h => h.classList.remove('is-active'));
+      hotspot.classList.add('is-active');
+      infoPanel.classList.add('is-active');
+    });
+    
+    // Keyboard accessibility
+    hotspot.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        hotspot.click();
+      }
+    });
+  });
+  
+  // Optional: Click outside to deactivate
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.guitar-hotspot') && !e.target.closest('.hotspot-info')) {
+      hotspots.forEach(h => h.classList.remove('is-active'));
+      infoPanel.classList.remove('is-active');
+    }
+  });
+});

@@ -42,7 +42,6 @@
       <a href="/percoustix-site/our-story.html">OUR STORY</a>
       <a href="/percoustix-site/index.html#join-the-band">JOIN THE BAND</a>
       <a href="#kickstarter">KICKSTARTER</a>
-      <a href="/percoustix-site/posters.html">POSTERS</a>
     </nav>
 
     <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
@@ -56,7 +55,6 @@
       <a href="/percoustix-site/index.html#join-the-band">JOIN THE BAND</a>
       <a href="#media">MEDIA</a>
       <a href="/percoustix-site/index.html#kickstarter">KICKSTARTER</a>
-      <a href="/percoustix-site/posters.html">POSTERS</a>
       <a href="#contact">CONTACT</a>
     </nav>
   </div>
@@ -65,9 +63,34 @@
 <!-- HERO -->
 <main id="top">
   <section class="hero">
-    <!-- Main Product Showcase -->
-    <div class="hero-product">
+    <!-- Main Product Showcase with Interactive Hotspots -->
+    <div class="hero-product" id="heroGuitar">
       <img src="assets/img/product-img.png" alt="Percoustix on Guitar" class="product-image">
+      
+      <!-- Interactive Hotspots -->
+      <button class="guitar-hotspot" 
+        style="--x: 42%; --y: 58%;"
+        data-title="Left Pad"
+        data-description="Trigger kicks, snares, or any drum sound with your strumming hand."
+        aria-label="Learn about left pad">
+        <span class="hotspot-pulse"></span>
+      </button>
+      
+      <button class="guitar-hotspot" 
+        style="--x: 58%; --y: 62%;"
+        data-title="Right Pad"
+        data-description="Add hi-hats, claps, or percussion without changing your playing style."
+        aria-label="Learn about right pad">
+        <span class="hotspot-pulse"></span>
+      </button>
+      
+      <button class="guitar-hotspot" 
+        style="--x: 50%; --y: 48%;"
+        data-title="Natural Placement"
+        data-description="Pads mount where your hand already moves. No awkward positioning."
+        aria-label="Learn about pad placement">
+        <span class="hotspot-pulse"></span>
+      </button>
     </div>
     
     <!-- Title -->
@@ -85,6 +108,16 @@ GUITAR!</span>
       
       <!-- UFO/Turntable (top right) -->
       <img src="assets/img/turntable.png" alt="" class="mascot mascot-ufo">
+    </div>
+    
+    <!-- Hotspot Info Panel -->
+    <div class="hotspot-info" id="hotspotInfo" aria-live="polite">
+      <div class="hotspot-info-inner">
+        <h3 class="hotspot-info-title" id="hotspotTitle">Click a glowing dot</h3>
+        <p class="hotspot-info-description" id="hotspotDescription">
+          Discover what makes Percoustix revolutionary.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -202,7 +235,7 @@ GUITAR!</span>
       <h2 class="section-title section-title-big">Launching on Kickstarter</h2>
       
       <p class="kickstarter-intro">
-        Percoustix is coming. Be part of the evolution that puts rhythm in your hands.
+        Percoustix is coming. Be part of the revolution that puts rhythm in your hands.
       </p>
 
       <!-- Timeline Roadmap -->
