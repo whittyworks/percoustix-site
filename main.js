@@ -116,32 +116,48 @@ document.addEventListener('DOMContentLoaded', () => {
       heroGuitar.classList.add('is-visible');
     }, 100);
     
-    // Parallax scroll effect - guitar moves as you scroll
+    // Check if desktop (only run animation on screens wider than 980px)
+    const isDesktop = () => window.innerWidth > 980;
+    
+    // Continuous scroll animation - guitar moves throughout entire page
     let ticking = false;
     
     window.addEventListener('scroll', () => {
+      // Only run on desktop
+      if (!isDesktop()) return;
+      
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const scrolled = window.pageYOffset;
-          const heroHeight = document.querySelector('.hero').offsetHeight;
+          const maxScroll = 1500; // Distance over which animation completes
           
-          // Only apply parallax while in hero section
-          if (scrolled < heroHeight) {
-            // Guitar moves down slower than scroll (parallax)
-            const parallaxSpeed = 0.3; // Lower = slower movement
-            const yPos = scrolled * parallaxSpeed;
-            
-            // Subtle rotation and scale based on scroll
-            const rotation = scrolled * 0.02; // Slight tilt
-            const scale = 1 - (scrolled * 0.0001); // Slight shrink
-            
-            heroGuitar.style.transform = `
-              translate(-50%, -50%) 
-              translateY(${yPos}px) 
-              rotate(${rotation}deg) 
-              scale(${Math.max(scale, 0.85)})
-            `;
-          }
+          // Calculate progress (0 to 1)
+          const progress = Math.min(scrolled / maxScroll, 1);
+          
+          // Start position: center (54%)
+          // End position: left (25%)
+          const startLeft = 54;
+          const endLeft = 25;
+          const currentLeft = startLeft - ((startLeft - endLeft) * progress);
+          
+          // Rotation: 0deg → -20deg (neck goes left off-screen)
+          const rotation = -20 * progress;
+          
+          // Scale: 100% → 85% (gets slightly smaller)
+          const scale = 1 - (0.15 * progress);
+          
+          // Move down continuously (parallax effect)
+          const parallaxSpeed = 0.25;
+          const yPos = scrolled * parallaxSpeed;
+          
+          // Apply all transforms
+          heroGuitar.style.left = `${currentLeft}%`;
+          heroGuitar.style.transform = `
+            translate(-50%, -50%)
+            translateY(${yPos}px)
+            rotate(${rotation}deg)
+            scale(${scale})
+          `;
           
           ticking = false;
         });
