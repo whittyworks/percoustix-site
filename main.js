@@ -121,17 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Check if desktop (only run animation on screens wider than 980px)
     const isDesktop = () => window.innerWidth > 980;
     
-    // Get water seam position (bottom edge where underwater starts)
-    let waterlineY = 0;
-    if (waterSeam) {
-      const updateWaterline = () => {
-        const seamRect = waterSeam.getBoundingClientRect();
-        waterlineY = seamRect.top + window.pageYOffset + (seamRect.height * 0.5); // Middle of seam
-      };
-      updateWaterline();
-      window.addEventListener('resize', updateWaterline);
-    }
-    
     // Continuous scroll animation - guitar stays visible throughout entire page
     let ticking = false;
     
@@ -174,11 +163,12 @@ document.addEventListener('DOMContentLoaded', () => {
           `;
           
           // UNDERWATER EFFECT: Fade out hotspots as they go below waterline
-          if (hotspots.length && waterlineY) {
-            const guitarRect = heroGuitar.getBoundingClientRect();
+          if (hotspots.length && waterSeam) {
+            const seamRect = waterSeam.getBoundingClientRect();
+            // Waterline is at the top edge of the water seam (where water starts)
+            const waterlineY = seamRect.top;
             
             hotspots.forEach(hotspot => {
-              // Get hotspot's position relative to guitar
               const hotspotRect = hotspot.getBoundingClientRect();
               const hotspotY = hotspotRect.top + (hotspotRect.height / 2);
               
@@ -187,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
               
               if (distanceBelowWater > 0) {
                 // Hotspot is underwater - fade out based on depth
-                const fadeDistance = 100; // Fade over 100px
+                const fadeDistance = 150; // Fade over 150px
                 const opacity = Math.max(0, 1 - (distanceBelowWater / fadeDistance));
                 hotspot.style.opacity = opacity;
                 hotspot.style.pointerEvents = opacity < 0.5 ? 'none' : 'auto';
