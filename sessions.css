@@ -195,9 +195,12 @@
 
 .video-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 40px;
+  grid-template-columns: repeat(2, 1fr); /* 2x2 grid for 4 videos */
+  gap: 50px; /* INCREASED from 40px */
   margin-bottom: 60px;
+  max-width: 1400px; /* INCREASED from default */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Video Cards */
@@ -212,7 +215,6 @@
 .video-card:nth-child(2) { animation-delay: 0.2s; }
 .video-card:nth-child(3) { animation-delay: 0.3s; }
 .video-card:nth-child(4) { animation-delay: 0.4s; }
-.video-card:nth-child(5) { animation-delay: 0.5s; }
 
 @keyframes fadeInUp {
   from {
@@ -227,7 +229,7 @@
 
 .video-wrapper {
   position: relative;
-  border-radius: 16px;
+  border-radius: 20px; /* INCREASED from 16px */
   overflow: hidden;
   border: 2px solid rgba(255,10,213,.4);
   background: rgba(10,0,20,.6);
@@ -281,8 +283,8 @@
 }
 
 .video-play-btn {
-  width: 80px;
-  height: 80px;
+  width: 100px; /* INCREASED from 80px */
+  height: 100px; /* INCREASED from 80px */
   border-radius: 50%;
   border: 3px solid rgba(255,10,213,.8);
   background: rgba(255,10,213,.2);
@@ -321,20 +323,22 @@
 }
 
 .video-play-btn svg {
+  width: 48px; /* INCREASED from default */
+  height: 48px; /* INCREASED from default */
   margin-left: 4px; /* Optical centering for play icon */
   filter: drop-shadow(0 2px 8px rgba(0,0,0,.8));
 }
 
 /* Video Info */
 .video-info {
-  margin-top: 20px;
+  margin-top: 24px; /* INCREASED from 20px */
   text-align: left;
 }
 
 .video-title {
-  margin: 0 0 8px;
+  margin: 0 0 10px; /* INCREASED spacing */
   font-family: Orbitron, Inter, sans-serif;
-  font-size: 20px;
+  font-size: 24px; /* INCREASED from 20px */
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -346,7 +350,7 @@
 
 .video-description {
   margin: 0;
-  font-size: 14px;
+  font-size: 16px; /* INCREASED from 14px */
   line-height: 1.6;
   color: rgba(255,255,255,.8);
   text-shadow: 0 2px 8px rgba(0,0,0,.7);
@@ -464,8 +468,8 @@
   }
 
   .video-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
+    grid-template-columns: 1fr; /* Single column on mobile */
+    gap: 35px;
   }
 
   .video-modal-content {
@@ -485,14 +489,20 @@
   }
 
   .video-play-btn {
-    width: 70px;
-    height: 70px;
+    width: 90px; /* INCREASED from 70px */
+    height: 90px; /* INCREASED from 70px */
+  }
+  
+  .video-play-btn svg {
+    width: 40px;
+    height: 40px;
   }
 }
 
-/* Tablet - 2 columns */
+/* Tablet - Keep 2 columns on larger mobile/tablet */
 @media (min-width: 600px) and (max-width: 980px) {
   .video-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* 2x2 grid on tablet */
+    gap: 30px;
   }
 }
