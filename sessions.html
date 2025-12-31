@@ -72,7 +72,7 @@
             <div class="video-wrapper">
               <!-- Replace with your video thumbnail -->
               <img 
-                src="assets/img/sessions/session-1.mp4" 
+                src="assets/img/sessions/video-1-thumb.jpg" 
                 alt="Session 1"
                 class="video-thumb"
                 loading="lazy"
@@ -223,11 +223,11 @@
 
     // Map video IDs to your actual video URLs (YouTube, Vimeo, or direct URLs)
     const videoSources = {
-      '1': 'YOUR_VIDEO_1_URL', // Replace with actual video URL or embed code
-      '2': 'YOUR_VIDEO_2_URL',
-      '3': 'YOUR_VIDEO_3_URL',
-      '4': 'YOUR_VIDEO_4_URL',
-      '5': 'YOUR_VIDEO_5_URL'
+      '1': 'assets/video/sessions/session-1.mp4', // Replace with actual video URL or embed code
+      '2': 'assets/video/sessions/session-2.mp4',
+      '3': 'assets/video/sessions/session-3.mp4',
+      '4': 'assets/video/sessions/session-4.mp4',
+      '5': 'assets/video/sessions/session-5.mp4'
     };
 
     // Open modal when clicking play button or card
@@ -238,11 +238,11 @@
       const openVideo = () => {
         const videoUrl = videoSources[videoId];
         
-        // For YouTube embeds (example):
+        // For YouTube embeds - INACTIVE (remove // at start of next line to use YouTube instead):
         // videoPlayerWrapper.innerHTML = `<iframe width="100%" height="100%" src="${videoUrl}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
         
-        // For direct video files (example):
-        // videoPlayerWrapper.innerHTML = `<video width="100%" height="100%" controls autoplay><source src="${videoUrl}" type="video/mp4"></video>`;
+        // For direct MP4 video files - ACTIVE:
+        videoPlayerWrapper.innerHTML = `<video width="100%" height="100%" controls autoplay><source src="${videoUrl}" type="video/mp4"></video>`;
         
         videoModal.classList.add('is-open');
         document.body.style.overflow = 'hidden';
