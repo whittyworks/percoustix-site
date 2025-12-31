@@ -1139,13 +1139,13 @@ main{
    ============================================ */
 
 .slam-section {
-  min-height: 70vh;
+  min-height: 50vh; /* REDUCED - was 70vh */
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   z-index: 2;
-  padding: 80px 20px;
+  padding: 60px 20px; /* REDUCED - was 80px */
   background: transparent;
 }
 
@@ -1159,8 +1159,8 @@ main{
 .slam-title {
   margin: 0;
   font-family: "Bebas Neue", Inter, sans-serif;
-  font-size: clamp(48px, 12vw, 180px);
-  letter-spacing: clamp(4px, 2vw, 20px);
+  font-size: clamp(40px, 9vw, 140px); /* REDUCED - was 180px max */
+  letter-spacing: clamp(3px, 1.5vw, 16px); /* REDUCED - was 20px max */
   text-transform: uppercase;
   color: #fff;
   line-height: 1;
@@ -1215,13 +1215,13 @@ main{
 /* Mobile adjustments for SLAM */
 @media (max-width: 980px) {
   .slam-section {
-    min-height: 50vh;
-    padding: 60px 20px;
+    min-height: 40vh; /* REDUCED - was 50vh */
+    padding: 50px 20px; /* REDUCED - was 60px */
   }
   
   .slam-title {
-    font-size: clamp(40px, 10vw, 80px);
-    letter-spacing: clamp(2px, 1vw, 10px);
+    font-size: clamp(36px, 8vw, 70px); /* REDUCED - was 80px max */
+    letter-spacing: clamp(2px, 0.8vw, 8px); /* REDUCED - was 10px max */
   }
 }
 
