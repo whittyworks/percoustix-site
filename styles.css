@@ -727,6 +727,39 @@ main{
   opacity: .9;
 }
 
+/* Learn More button for How It Works */
+.how-cta{
+  text-align: center;
+  margin-top: 40px;
+}
+
+.btn-how-works{
+  display: inline-block;
+  padding: 16px 40px;
+  background: linear-gradient(135deg, var(--cyan), rgba(47,211,255,.7));
+  color: #000;
+  font-family: Orbitron, Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 50px;
+  border: 1px solid rgba(47,211,255,.6);
+  box-shadow: 
+    0 4px 20px rgba(47,211,255,.4),
+    0 12px 40px rgba(0,0,0,.5);
+  transition: all 0.3s ease;
+}
+
+.btn-how-works:hover{
+  transform: translateY(-2px);
+  box-shadow: 
+    0 6px 30px rgba(47,211,255,.6),
+    0 16px 50px rgba(0,0,0,.7);
+  background: linear-gradient(135deg, rgba(47,211,255,1), rgba(47,211,255,.85));
+}
+
 .how-media{
   display: flex;
   justify-content: center;
@@ -1852,7 +1885,7 @@ main{
   /* On mobile, move info panel to bottom center for better readability */
   .hotspot-info {
     top: auto;
-    bottom: 5%;
+    bottom: 15%; /* INCREASED from 5% - moves box higher up */
     right: auto;
     left: 50%;
     transform: translateX(-50%);
