@@ -243,3 +243,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+/* =========================
+   SLAM SECTION ANIMATION
+========================= */
+document.addEventListener('DOMContentLoaded', () => {
+  const slamTitle = document.getElementById('slamTitle');
+  
+  if (slamTitle) {
+    // Intersection Observer to trigger when section is visible
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Add slam-active class to trigger animation
+          entry.target.classList.add('slam-active');
+          // Only animate once
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.3, // Trigger when 30% visible
+      rootMargin: '0px'
+    });
+    
+    observer.observe(slamTitle);
+  }
+});
