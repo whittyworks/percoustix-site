@@ -72,7 +72,7 @@
             <div class="video-wrapper">
               <!-- Replace with your video thumbnail -->
               <img 
-                src="assets/img/sessions/video-1-thumb.jpg" 
+                src="assets/img/video-1-thumb.png" 
                 alt="Session 1"
                 class="video-thumb"
                 loading="lazy"
@@ -95,7 +95,7 @@
           <article class="video-card" data-video="2">
             <div class="video-wrapper">
               <img 
-                src="assets/img/sessions/video-2-thumb.jpg" 
+                src="assets/img/video-2-thumb.png" 
                 alt="Session 2"
                 class="video-thumb"
                 loading="lazy"
@@ -118,7 +118,7 @@
           <article class="video-card" data-video="3">
             <div class="video-wrapper">
               <img 
-                src="assets/img/sessions/video-3-thumb.jpg" 
+                src="assets/img/video-3-thumb.png" 
                 alt="Session 3"
                 class="video-thumb"
                 loading="lazy"
@@ -141,7 +141,7 @@
           <article class="video-card" data-video="4">
             <div class="video-wrapper">
               <img 
-                src="assets/img/sessions/video-4-thumb.jpg" 
+                src="assets/img/video-4-thumb.png" 
                 alt="Session 4"
                 class="video-thumb"
                 loading="lazy"
@@ -164,7 +164,7 @@
           <article class="video-card" data-video="5">
             <div class="video-wrapper">
               <img 
-                src="assets/img/sessions/video-5-thumb.jpg" 
+                src="assets/img/video-1-thumb.png" 
                 alt="Session 5"
                 class="video-thumb"
                 loading="lazy"
@@ -230,6 +230,17 @@
       '5': 'assets/video/sessions/session-5.mp4'
     };
 
+    // Map video IDs to poster/thumbnail images (these files live in assets/img)
+    const posterSources = {
+      '1': 'assets/img/video-1-thumb.png',
+      '2': 'assets/img/video-2-thumb.png',
+      '3': 'assets/img/video-3-thumb.png',
+      '4': 'assets/img/video-4-thumb.png',
+      // fallback for 5 (no separate thumbnail provided)
+      '5': 'assets/img/video-1-thumb.png'
+    };
+
+    
     // Open modal when clicking play button or card
     videoCards.forEach(card => {
       const playBtn = card.querySelector('.video-play-btn');
@@ -241,8 +252,9 @@
         // For YouTube embeds - INACTIVE (remove // at start of next line to use YouTube instead):
         // videoPlayerWrapper.innerHTML = `<iframe width="100%" height="100%" src="${videoUrl}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
         
-        // For direct MP4 video files - ACTIVE:
-        videoPlayerWrapper.innerHTML = `<video width="100%" height="100%" controls autoplay><source src="${videoUrl}" type="video/mp4"></video>`;
+  // For direct MP4 video files - ACTIVE (include poster image):
+  const posterUrl = posterSources[videoId] || '';
+  videoPlayerWrapper.innerHTML = `<video width="100%" height="100%" controls autoplay poster="${posterUrl}"><source src="${videoUrl}" type="video/mp4"></video>`;
         
         videoModal.classList.add('is-open');
         document.body.style.overflow = 'hidden';
