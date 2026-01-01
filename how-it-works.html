@@ -12,12 +12,6 @@
 
   <link rel="stylesheet" href="styles.css?v=14" />
   <link rel="stylesheet" href="how-it-works.css?v=13" />
-    <!-- Favicon and manifest -->
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/percoustix-logo.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/percoustix-logo.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/percoustix-logo.png" />
-    <link rel="manifest" href="site.webmanifest" />
-    <meta name="theme-color" content="#2fd3ff" />
 </head>
 
 <body class="howitworks-page">
@@ -31,7 +25,6 @@
         <a href="index.html">HOME</a>
         <a href="/percoustix-site/how-it-works.html" class="active">HOW IT WORKS</a>
         <a href="/percoustix-site/our-story.html">OUR STORY</a>
-        <a href="/percoustix-site/sessions.html">SESSIONS</a>
         <a href="index.html#join-the-band">JOIN THE BAND</a>
         <a href="index.html#kickstarter">KICKSTARTER</a>
         <a href="/percoustix-site/posters.html">POSTERS</a>
@@ -45,7 +38,19 @@
         <a href="index.html">HOME</a>
         <a href="/percoustix-site/how-it-works.html" class="active">HOW IT WORKS</a>
         <a href="/percoustix-site/our-story.html">OUR STORY</a>
-        <a href="/percoustix-site/sessions.html">SESSIONS</a>
+        <a href="index.html#join-the-band">JOIN THE BAND</a>
+        <a href="index.html#kickstarter">KICKSTARTER</a>
+        <a href="/percoustix-site/posters.html">POSTERS</a>
+      </nav>
+
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        MENU
+      </button>
+
+      <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <a href="index.html">HOME</a>
+        <a href="/percoustix-site/how-it-works.html" class="active">HOW IT WORKS</a>
+        <a href="/percoustix-site/our-story.html">OUR STORY</a>
         <a href="index.html#join-the-band">JOIN THE BAND</a>
         <a href="index.html#kickstarter">KICKSTARTER</a>
         <a href="/percoustix-site/posters.html">POSTERS</a>
@@ -145,7 +150,7 @@
       <div class="container">
         <h1 class="section-title-big">Tap the Pads</h1>
         <p class="demo-subtitle">
-          Click a hotspot to learn what each pad does. (Yes, it's allowed to be fun.)
+          Click a hotspot to hear what each pad does. Click the sound hole to start the music! (Yes, it's allowed to be fun.)
         </p>
 
         <div class="demo-layout">
@@ -159,27 +164,29 @@
             />
 
             <!-- HOTSPOTS -->
-            <button class="hotspot"
+            <button class="hotspot hotspot-left"
               style="--x: 33%; --y: 65%;"
+              data-pad="left"
               data-title="Left Pad"
-              data-body="This pad is positioned for your strumming-hand taps. Great for kick/snare patterns without changing how you play."
+              data-body="Choose a sound and tap to hear it! Works with touch screens too."
               aria-label="Left pad hotspot">
               <span class="hotspot-ring" aria-hidden="true"></span>
             </button>
 
-            <button class="hotspot"
+            <button class="hotspot hotspot-right"
               style="--x: 68%; --y: 75%;"
+              data-pad="right"
               data-title="Right Pad"
-              data-body="This pad sits where your hand naturally lands for accents. Map it to hats, claps, percussion, or whatever groove you want."
+              data-body="Choose a sound and tap to hear it! Try tapping both pads at once!"
               aria-label="Right pad hotspot">
               <span class="hotspot-ring" aria-hidden="true"></span>
             </button>
 
-            <button class="hotspot"
+            <button class="hotspot hotspot-soundhole"
               style="--x: 50%; --y: 60%;"
               data-title="Sound Hole Area"
-              data-body="Percoustix mounts close to the sound hole so you can play rhythm + harmony together without bulky hardware."
-              aria-label="Sound hole hotspot">
+              data-body="Click here to start the guitar music loop! Then try the drum pads."
+              aria-label="Sound hole hotspot - click to play guitar music">
               <span class="hotspot-ring" aria-hidden="true"></span>
             </button>
           </div>
@@ -188,13 +195,42 @@
           <aside class="demo-panel" aria-live="polite">
             <div class="demo-panel-inner">
               <div class="demo-panel-kicker">DEMO INFO</div>
-              <h2 class="demo-panel-title" id="demoTitle">Click a hotspot</h2>
+              <h2 class="demo-panel-title" id="demoTitle">Choose Your Sounds</h2>
               <p class="demo-panel-body" id="demoBody">
-                Tap any glowing dot on the guitar to learn what it does.
+                Select which sound each pad triggers, then tap to play. Start with the sound hole to play music!
               </p>
 
+              <!-- Sound Selector Controls -->
+              <div class="sound-controls">
+                <div class="sound-control-group">
+                  <label for="leftPadSound" class="sound-label">
+                    <span class="label-icon">◀</span> Left Pad
+                  </label>
+                  <select id="leftPadSound" class="sound-select">
+                    <option value="kick">Kick Drum</option>
+                    <option value="snare">Snare Drum</option>
+                    <option value="hihat">Hi-Hat</option>
+                    <option value="bongo">Bongo</option>
+                    <option value="bass">Bass Drum</option>
+                  </select>
+                </div>
+
+                <div class="sound-control-group">
+                  <label for="rightPadSound" class="sound-label">
+                    <span class="label-icon">▶</span> Right Pad
+                  </label>
+                  <select id="rightPadSound" class="sound-select">
+                    <option value="hihat">Hi-Hat</option>
+                    <option value="kick">Kick Drum</option>
+                    <option value="snare">Snare Drum</option>
+                    <option value="bongo">Bongo</option>
+                    <option value="bass">Bass Drum</option>
+                  </select>
+                </div>
+              </div>
+
               <div class="demo-panel-hint">
-                Tip: if a dot feels "off," change its <code>--x</code> / <code>--y</code> values in the button's style.
+                <strong>Pro tip:</strong> On touch screens, you can tap both pads simultaneously! Try different sound combinations.
               </div>
             </div>
           </aside>
@@ -289,6 +325,232 @@
         }
       });
     }
+
+    // =============================================
+    // INTERACTIVE AUDIO FOR DEMO HOTSPOTS
+    // =============================================
+    
+    // Audio elements - IMPORTANT: Replace these paths with your actual audio files
+    const guitarLoop = new Audio('assets/audio/guitar-loop.mp3'); // 10-15 second guitar music loop
+    
+    // Create all drum sound objects
+    const drumSounds = {
+      kick: new Audio('assets/audio/kick.mp3'),
+      snare: new Audio('assets/audio/snare.mp3'),
+      hihat: new Audio('assets/audio/hihat.mp3'),
+      bongo: new Audio('assets/audio/bongo.mp3'),
+      bass: new Audio('assets/audio/bass.mp3')
+    };
+
+    // Configure guitar loop to repeat
+    guitarLoop.loop = true;
+    guitarLoop.volume = 0.7; // Adjust as needed (0.0 to 1.0)
+
+    // Configure all drum sounds
+    Object.values(drumSounds).forEach(sound => {
+      sound.volume = 0.8;
+    });
+
+    // Track if guitar is playing
+    let guitarPlaying = false;
+
+    // Get UI elements
+    const hotspots = document.querySelectorAll('.hotspot');
+    const titleEl = document.getElementById('demoTitle');
+    const bodyEl = document.getElementById('demoBody');
+    const leftPadSelect = document.getElementById('leftPadSound');
+    const rightPadSelect = document.getElementById('rightPadSound');
+    
+    // Function to play a drum sound based on pad
+    function playPadSound(padType) {
+      let soundKey;
+      
+      if (padType === 'left') {
+        soundKey = leftPadSelect.value;
+      } else if (padType === 'right') {
+        soundKey = rightPadSelect.value;
+      } else {
+        return; // Not a drum pad
+      }
+      
+      const sound = drumSounds[soundKey];
+      if (sound) {
+        sound.currentTime = 0; // Reset to start for rapid clicks
+        sound.play().catch(err => {
+          console.log('Audio play failed:', err);
+        });
+      }
+    }
+    
+    // Function to update info panel
+    function updateInfoPanel(hotspot) {
+      const title = hotspot.getAttribute('data-title');
+      const body = hotspot.getAttribute('data-body');
+      
+      titleEl.textContent = title;
+      bodyEl.textContent = body;
+      
+      // Remove active class from all hotspots
+      hotspots.forEach(h => h.classList.remove('is-active'));
+      hotspot.classList.add('is-active');
+    }
+    
+    // =============================================
+    // MOUSE/CLICK SUPPORT
+    // =============================================
+    hotspots.forEach(hotspot => {
+      hotspot.addEventListener('click', function(e) {
+        e.preventDefault(); // Prevent default to avoid conflicts with touch
+        
+        const padType = this.getAttribute('data-pad');
+        const title = this.getAttribute('data-title');
+        
+        updateInfoPanel(this);
+        
+        // Handle sound hole (guitar loop toggle)
+        if (this.classList.contains('hotspot-soundhole')) {
+          if (guitarPlaying) {
+            guitarLoop.pause();
+            guitarLoop.currentTime = 0;
+            guitarPlaying = false;
+            bodyEl.textContent = 'Guitar music stopped. Click again to restart, or tap the pads to hear drum sounds.';
+          } else {
+            guitarLoop.play().catch(err => {
+              console.log('Audio play failed:', err);
+              bodyEl.textContent = 'Click failed - audio files may be missing. Make sure to add your audio files!';
+            });
+            guitarPlaying = true;
+            bodyEl.textContent = 'Guitar music playing! Now tap the drum pads to hear them mixed with the guitar.';
+          }
+        }
+        // Handle drum pads
+        else if (padType) {
+          playPadSound(padType);
+        }
+      });
+    });
+
+    // =============================================
+    // TOUCH SCREEN SUPPORT (Multi-touch enabled!)
+    // =============================================
+    
+    // Track active touches
+    const activeTouches = new Map();
+    
+    hotspots.forEach(hotspot => {
+      // Prevent default touch behaviors that might interfere
+      hotspot.addEventListener('touchstart', function(e) {
+        e.preventDefault(); // Prevents mouse events from firing
+        
+        const padType = this.getAttribute('data-pad');
+        
+        // Process each touch point
+        Array.from(e.changedTouches).forEach(touch => {
+          // Store this touch
+          activeTouches.set(touch.identifier, {
+            element: this,
+            padType: padType
+          });
+          
+          // Update info panel (only for first touch or sound hole)
+          if (activeTouches.size === 1 || this.classList.contains('hotspot-soundhole')) {
+            updateInfoPanel(this);
+          }
+          
+          // Handle sound hole (guitar loop toggle)
+          if (this.classList.contains('hotspot-soundhole')) {
+            if (guitarPlaying) {
+              guitarLoop.pause();
+              guitarLoop.currentTime = 0;
+              guitarPlaying = false;
+              bodyEl.textContent = 'Guitar music stopped. Tap again to restart!';
+            } else {
+              guitarLoop.play().catch(err => {
+                console.log('Audio play failed:', err);
+                bodyEl.textContent = 'Tap failed - audio files may be missing.';
+              });
+              guitarPlaying = true;
+              bodyEl.textContent = 'Guitar music playing! Now tap both drum pads at once!';
+            }
+          }
+          // Handle drum pads
+          else if (padType) {
+            playPadSound(padType);
+            
+            // Special message if both pads are being touched simultaneously
+            if (activeTouches.size > 1) {
+              const padTypes = Array.from(activeTouches.values()).map(t => t.padType).filter(Boolean);
+              if (padTypes.includes('left') && padTypes.includes('right')) {
+                const leftSound = leftPadSelect.options[leftPadSelect.selectedIndex].text;
+                const rightSound = rightPadSelect.options[rightPadSelect.selectedIndex].text;
+                bodyEl.textContent = `Playing ${leftSound} + ${rightSound} together! 🔥`;
+              }
+            }
+          }
+        });
+      });
+      
+      hotspot.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        
+        // Remove ended touches from tracking
+        Array.from(e.changedTouches).forEach(touch => {
+          activeTouches.delete(touch.identifier);
+        });
+      });
+      
+      hotspot.addEventListener('touchcancel', function(e) {
+        e.preventDefault();
+        
+        // Remove cancelled touches from tracking
+        Array.from(e.changedTouches).forEach(touch => {
+          activeTouches.delete(touch.identifier);
+        });
+      });
+    });
+
+    // =============================================
+    // DROPDOWN CHANGE FEEDBACK
+    // =============================================
+    leftPadSelect.addEventListener('change', function() {
+      const soundName = this.options[this.selectedIndex].text;
+      bodyEl.textContent = `Left pad now plays: ${soundName}. Tap it to test!`;
+    });
+    
+    rightPadSelect.addEventListener('change', function() {
+      const soundName = this.options[this.selectedIndex].text;
+      bodyEl.textContent = `Right pad now plays: ${soundName}. Tap it to test!`;
+    });
+
+    // Optional: Stop guitar loop when leaving the page
+    window.addEventListener('beforeunload', () => {
+      if (guitarPlaying) {
+        guitarLoop.pause();
+      }
+    });
+
+    // =============================================
+    // KEYBOARD CONTROLS (Desktop convenience)
+    // =============================================
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') {
+        // Left arrow or A = left pad
+        playPadSound('left');
+      } else if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') {
+        // Right arrow or D = right pad
+        playPadSound('right');
+      } else if (e.key === ' ') {
+        // Spacebar = toggle guitar loop
+        e.preventDefault();
+        if (guitarPlaying) {
+          guitarLoop.pause();
+          guitarPlaying = false;
+        } else {
+          guitarLoop.play().catch(err => console.log('Audio failed'));
+          guitarPlaying = true;
+        }
+      }
+    });
   </script>
 </body>
 </html>
