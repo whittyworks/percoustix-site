@@ -42,19 +42,6 @@
         <a href="index.html#kickstarter">KICKSTARTER</a>
         <a href="/percoustix-site/posters.html">POSTERS</a>
       </nav>
-
-      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
-        MENU
-      </button>
-
-      <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
-        <a href="index.html">HOME</a>
-        <a href="/percoustix-site/how-it-works.html" class="active">HOW IT WORKS</a>
-        <a href="/percoustix-site/our-story.html">OUR STORY</a>
-        <a href="index.html#join-the-band">JOIN THE BAND</a>
-        <a href="index.html#kickstarter">KICKSTARTER</a>
-        <a href="/percoustix-site/posters.html">POSTERS</a>
-      </nav>
     </div>
   </header>
 
@@ -150,7 +137,7 @@
       <div class="container">
         <h1 class="section-title-big">Tap the Pads</h1>
         <p class="demo-subtitle">
-          Tap directly on the pads or strings in the image! Choose your sounds and play. (Yes, it's allowed to be fun.)
+          Tap anywhere on the pads or strings! Choose sounds, then play. Multi-touch supported!
         </p>
 
         <div class="demo-layout">
@@ -227,7 +214,7 @@
               </div>
 
               <div class="demo-panel-hint">
-                <strong>Pro tip:</strong> Tap directly on the visible pads in the image! On touch screens, you can tap both pads at once.
+                <strong>Pro tip:</strong> On touch screens, you can tap both pads simultaneously! Try different sound combinations.
               </div>
             </div>
           </aside>
@@ -293,7 +280,6 @@
     const flowModalOverlay = document.getElementById('flowModalOverlay');
 
     if (flowPreviewImg && flowModal) {
-      // Open modal when clicking the preview image or wrapper
       const openModal = () => {
         flowModal.classList.add('is-open');
         document.body.style.overflow = 'hidden';
@@ -314,7 +300,6 @@
         document.body.style.overflow = '';
       });
 
-      // Close on ESC key
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && flowModal.classList.contains('is-open')) {
           flowModal.classList.remove('is-open');
@@ -324,13 +309,12 @@
     }
 
     // =============================================
-    // INTERACTIVE AUDIO FOR DEMO HOTSPOTS
+    // OPTIMIZED AUDIO - REDUCED LATENCY VERSION
     // =============================================
     
-    // Audio elements - IMPORTANT: Replace these paths with your actual audio files
-    const guitarLoop = new Audio('assets/audio/guitar-loop.mp3'); // 10-15 second guitar music loop
+    // Create all audio elements with preloading
+    const guitarLoop = new Audio('assets/audio/guitar-loop.mp3');
     
-    // Create all drum sound objects
     const drumSounds = {
       kick: new Audio('assets/audio/kick.mp3'),
       snare: new Audio('assets/audio/snare.mp3'),
@@ -339,17 +323,42 @@
       bass: new Audio('assets/audio/bass.mp3')
     };
 
-    // Configure guitar loop to repeat
-    guitarLoop.loop = true;
-    guitarLoop.volume = 0.7; // Adjust as needed (0.0 to 1.0)
+    // CRITICAL: Force preload all audio files
+    guitarLoop.preload = 'auto';
+    guitarLoop.load();
+    
+    Object.values(drumSounds).forEach(sound => {
+      sound.preload = 'auto';
+      sound.load();
+    });
 
-    // Configure all drum sounds
+    // Configure guitar loop
+    guitarLoop.loop = true;
+    guitarLoop.volume = 0.7;
+
+    // Configure drum sounds
     Object.values(drumSounds).forEach(sound => {
       sound.volume = 0.8;
     });
 
     // Track if guitar is playing
     let guitarPlaying = false;
+
+    // Track loading status
+    let soundsLoaded = 0;
+    const totalSounds = Object.keys(drumSounds).length + 1;
+    
+    function checkAllLoaded() {
+      soundsLoaded++;
+      if (soundsLoaded === totalSounds) {
+        console.log('✅ All audio loaded and ready!');
+      }
+    }
+    
+    guitarLoop.addEventListener('canplaythrough', checkAllLoaded, { once: true });
+    Object.values(drumSounds).forEach(sound => {
+      sound.addEventListener('canplaythrough', checkAllLoaded, { once: true });
+    });
 
     // Get UI elements
     const hotspots = document.querySelectorAll('.hotspot');
@@ -358,7 +367,7 @@
     const leftPadSelect = document.getElementById('leftPadSound');
     const rightPadSelect = document.getElementById('rightPadSound');
     
-    // Function to play a drum sound based on pad
+    // OPTIMIZED: Play drum sound with minimal latency
     function playPadSound(padType) {
       let soundKey;
       
@@ -367,114 +376,98 @@
       } else if (padType === 'right') {
         soundKey = rightPadSelect.value;
       } else {
-        return; // Not a drum pad
+        return;
       }
       
       const sound = drumSounds[soundKey];
       if (sound) {
-        sound.currentTime = 0; // Reset to start for rapid clicks
-        sound.play().catch(err => {
-          console.log('Audio play failed:', err);
-        });
+        sound.currentTime = 0;
+        const playPromise = sound.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(err => {
+            console.log('Audio play failed:', err);
+          });
+        }
       }
     }
     
-    // Function to update info panel
     function updateInfoPanel(hotspot) {
       const title = hotspot.getAttribute('data-title');
       const body = hotspot.getAttribute('data-body');
-      
       titleEl.textContent = title;
       bodyEl.textContent = body;
-      
-      // Remove active class from all hotspots
       hotspots.forEach(h => h.classList.remove('is-active'));
       hotspot.classList.add('is-active');
     }
     
-    // =============================================
-    // MOUSE/CLICK SUPPORT
-    // =============================================
+    // Mouse/click support
     hotspots.forEach(hotspot => {
       hotspot.addEventListener('click', function(e) {
-        e.preventDefault(); // Prevent default to avoid conflicts with touch
-        
+        e.preventDefault();
         const padType = this.getAttribute('data-pad');
-        const title = this.getAttribute('data-title');
-        
         updateInfoPanel(this);
         
-        // Handle sound hole (guitar loop toggle)
         if (this.classList.contains('hotspot-soundhole')) {
           if (guitarPlaying) {
             guitarLoop.pause();
             guitarLoop.currentTime = 0;
             guitarPlaying = false;
-            bodyEl.textContent = 'Guitar music stopped. Click again to restart, or tap the pads to hear drum sounds.';
+            bodyEl.textContent = 'Guitar music stopped. Click again to restart!';
           } else {
-            guitarLoop.play().catch(err => {
-              console.log('Audio play failed:', err);
-              bodyEl.textContent = 'Click failed - audio files may be missing. Make sure to add your audio files!';
-            });
-            guitarPlaying = true;
-            bodyEl.textContent = 'Guitar music playing! Now tap the drum pads to hear them mixed with the guitar.';
+            const playPromise = guitarLoop.play();
+            if (playPromise !== undefined) {
+              playPromise.then(() => {
+                guitarPlaying = true;
+                bodyEl.textContent = 'Guitar music playing! Now tap the drum pads!';
+              }).catch(err => {
+                console.log('Audio play failed:', err);
+                bodyEl.textContent = 'Audio may not be loaded yet. Wait and try again.';
+              });
+            }
           }
-        }
-        // Handle drum pads
-        else if (padType) {
+        } else if (padType) {
           playPadSound(padType);
         }
       });
     });
 
-    // =============================================
-    // TOUCH SCREEN SUPPORT (Multi-touch enabled!)
-    // =============================================
-    
-    // Track active touches
+    // Touch screen support
     const activeTouches = new Map();
     
     hotspots.forEach(hotspot => {
-      // Prevent default touch behaviors that might interfere
       hotspot.addEventListener('touchstart', function(e) {
-        e.preventDefault(); // Prevents mouse events from firing
-        
+        e.preventDefault();
         const padType = this.getAttribute('data-pad');
         
-        // Process each touch point
         Array.from(e.changedTouches).forEach(touch => {
-          // Store this touch
           activeTouches.set(touch.identifier, {
             element: this,
             padType: padType
           });
           
-          // Update info panel (only for first touch or sound hole)
           if (activeTouches.size === 1 || this.classList.contains('hotspot-soundhole')) {
             updateInfoPanel(this);
           }
           
-          // Handle sound hole (guitar loop toggle)
           if (this.classList.contains('hotspot-soundhole')) {
             if (guitarPlaying) {
               guitarLoop.pause();
               guitarLoop.currentTime = 0;
               guitarPlaying = false;
-              bodyEl.textContent = 'Guitar music stopped. Tap again to restart!';
+              bodyEl.textContent = 'Guitar music stopped!';
             } else {
-              guitarLoop.play().catch(err => {
-                console.log('Audio play failed:', err);
-                bodyEl.textContent = 'Tap failed - audio files may be missing.';
-              });
-              guitarPlaying = true;
-              bodyEl.textContent = 'Guitar music playing! Now tap both drum pads at once!';
+              const playPromise = guitarLoop.play();
+              if (playPromise !== undefined) {
+                playPromise.then(() => {
+                  guitarPlaying = true;
+                  bodyEl.textContent = 'Playing! Tap both pads at once!';
+                }).catch(err => {
+                  console.log('Audio play failed:', err);
+                });
+              }
             }
-          }
-          // Handle drum pads
-          else if (padType) {
+          } else if (padType) {
             playPadSound(padType);
-            
-            // Special message if both pads are being touched simultaneously
             if (activeTouches.size > 1) {
               const padTypes = Array.from(activeTouches.values()).map(t => t.padType).filter(Boolean);
               if (padTypes.includes('left') && padTypes.includes('right')) {
@@ -489,8 +482,6 @@
       
       hotspot.addEventListener('touchend', function(e) {
         e.preventDefault();
-        
-        // Remove ended touches from tracking
         Array.from(e.changedTouches).forEach(touch => {
           activeTouches.delete(touch.identifier);
         });
@@ -498,17 +489,13 @@
       
       hotspot.addEventListener('touchcancel', function(e) {
         e.preventDefault();
-        
-        // Remove cancelled touches from tracking
         Array.from(e.changedTouches).forEach(touch => {
           activeTouches.delete(touch.identifier);
         });
       });
     });
 
-    // =============================================
-    // DROPDOWN CHANGE FEEDBACK
-    // =============================================
+    // Dropdown change feedback
     leftPadSelect.addEventListener('change', function() {
       const soundName = this.options[this.selectedIndex].text;
       bodyEl.textContent = `Left pad now plays: ${soundName}. Tap it to test!`;
@@ -519,32 +506,28 @@
       bodyEl.textContent = `Right pad now plays: ${soundName}. Tap it to test!`;
     });
 
-    // Optional: Stop guitar loop when leaving the page
     window.addEventListener('beforeunload', () => {
-      if (guitarPlaying) {
-        guitarLoop.pause();
-      }
+      if (guitarPlaying) guitarLoop.pause();
     });
 
-    // =============================================
-    // KEYBOARD CONTROLS (Desktop convenience)
-    // =============================================
+    // Keyboard controls
     document.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') {
-        // Left arrow or A = left pad
         playPadSound('left');
       } else if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') {
-        // Right arrow or D = right pad
         playPadSound('right');
       } else if (e.key === ' ') {
-        // Spacebar = toggle guitar loop
         e.preventDefault();
         if (guitarPlaying) {
           guitarLoop.pause();
           guitarPlaying = false;
         } else {
-          guitarLoop.play().catch(err => console.log('Audio failed'));
-          guitarPlaying = true;
+          const playPromise = guitarLoop.play();
+          if (playPromise !== undefined) {
+            playPromise.then(() => {
+              guitarPlaying = true;
+            }).catch(err => console.log('Audio failed'));
+          }
         }
       }
     });
